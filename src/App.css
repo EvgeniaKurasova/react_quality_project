@@ -41,3 +41,75 @@ h1 {
     transform: rotate(360deg);
   }
 } */
+
+/* Глобальні стилі для body */
+body {
+  font-family: 'Arial', sans-serif; /* Основний шрифт для тексту */
+  font-size: 16px; /* Розмір основного шрифта */
+  line-height: 1.5; /* Міжрядковий інтервал */
+  margin: 0;
+  padding: 0;
+  /* color: #333;
+  background-color: #f8f8f8; */
+  word-wrap: break-word; /* Перенос слів у тексті */
+}
+h1 {
+  font-family: 'Georgia', serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: #222;
+  /* margin: 0 0 20px 0; */
+  line-height: 1.2;
+}
+h2 {
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  color: #333;
+  /* margin: 0 0 15px 0; */
+  line-height: 1.3;
+}
+h3 {
+  font-family: 'Georgia', serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #444;
+  /* margin: 0 0 10px 0; */
+  line-height: 1.4;
+}
+h4 {
+  font-family: 'Georgia', serif;
+  font-size: 20px;
+  font-weight: normal;
+  color: #555;
+  /* margin: 0 0 10px 0; */
+  line-height: 1.5;
+}
+p {
+  font-size: 16px;
+  line-height: 1.6; /* Міжрядковий інтервал */
+  margin: 0 0 15px 0; /* Відступи між абзацами */
+  color: #666; /* Колір тексту */
+  font-weight: normal;
+}
+button {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #007bff; /* Колір фону */
+  color: white; /* Колір тексту */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Анімація на hover */
+}
+
+button:hover {
+  background-color: #0056b3; /* Колір фону при наведенні */
+}
+
+button:active {
+  background-color: #003f7f; /* Колір фону при натисканні */
+}
+
+button:disabled {
+  background-color: #ccc; /* Колір фону для вимкнених кнопок */
+  cursor: not-allowed;
+}
