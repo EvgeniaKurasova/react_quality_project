@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styles from './Header.module.css'
+import { MdLanguage } from 'react-icons/md'
 
 const Header = () => {
   return (
@@ -7,12 +8,14 @@ const Header = () => {
       <div className={styles.logo}>Animal Shelter</div>
       <div className={styles.menu}>
         <nav className={styles.nav}>
-          <Link to="/">Home</Link>
-          <Link to="/animal_list">Catalog</Link>
-          <Link to="/about">About Us</Link>
+          <NavLink to="." end>
+            Home
+          </NavLink>
+          <NavLink to="/animal_list">Catalog</NavLink>
+          <NavLink to="/about">About Us</NavLink>
         </nav>
         <div>
-          <img alt="language" />
+          <MdLanguage title="language" />
         </div>
       </div>
     </header>
