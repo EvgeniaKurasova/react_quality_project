@@ -11,8 +11,8 @@ const Header = () => {
           <NavLink to="." end>
             Home
           </NavLink>
-          <NavLink to="/animal_list">Catalog</NavLink>
-          <NavLink to="/about">About Us</NavLink>
+          <NavLink to="animal_list">Catalog</NavLink>
+          <NavLink to="about">About Us</NavLink>
         </nav>
         <div>
           <MdLanguage title="language" />
