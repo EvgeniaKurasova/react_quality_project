@@ -6,6 +6,8 @@ import Home from './pages/Home'
 import AnimalList from './pages/AnimalList'
 import About from './pages/About'
 import Admin from './pages/Admin'
+import Login from './pages/Login'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
@@ -20,7 +22,15 @@ function App() {
         </Route>
 
         {/* Адмін-панель без Layout */}
-        <Route path="/admin/*" element={<Admin />} />
+        <Route
+          path="/admin/*"
+          element={
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   )
