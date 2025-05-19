@@ -1,0 +1,98 @@
+.container {
+  /* max-width: 1200px;
+  margin: 0 auto; */
+  padding: 60px 40px 90px 40px;
+  background: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-family: 'Georgia', serif;
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #111;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: #14471e;
+  margin-bottom: 60px;
+  margin-left: 60px;
+}
+
+.gallery {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: #111;
+}
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.postCard {
+  background: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(20, 71, 30, 0.08);
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+  position: relative;
+  border: 1px solid #ddd;
+}
+
+.postImage {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #ccc;
+}
+
+.postTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #14471e;
+  margin: 18px 18px 0 18px;
+  font-family: 'Georgia', serif;
+}
+
+.postDesc {
+  font-size: 15px;
+  color: #444;
+  margin: 10px 18px 18px 18px;
+}
+
+@media (max-width: 900px) {
+  .postsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 32px;
+  }
+  .subtitle {
+    font-size: 16px;
+    margin-left: 0;
+  }
+  .container {
+    padding: 20px 5px 0 5px;
+  }
+  .postsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

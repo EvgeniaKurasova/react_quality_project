@@ -11,12 +11,15 @@ const Header = () => {
           <NavLink to="." end>
             Home
           </NavLink>
-          <NavLink to="animal_list">Catalog</NavLink>
           <NavLink to="about">About Us</NavLink>
         </nav>
-        <div>
-          <MdLanguage title="language" />
-        </div>
+        <button className={`${styles.headerButton} ${styles.signIn}`}>
+          Sign In
+        </button>
+        <button className={`${styles.headerButton} ${styles.signUp}`}>
+          Sign Up
+        </button>
+        <MdLanguage title="language" className={styles.languageIcon} />
       </div>
     </header>
   )

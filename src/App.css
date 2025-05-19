@@ -9,10 +9,6 @@ button {
   border: 0px;
   cursor: pointer;
 }
-.active {
-  color: black;
-  text-decoration: underline;
-}
 
 /* 
 .App-logo {
@@ -113,4 +109,10 @@ button:active {
 button:disabled {
   background-color: #ccc; /* Колір фону для вимкнених кнопок */
   cursor: not-allowed;
+}
+
+.active {
+  /* color: black; */
+  text-decoration: underline;
+  text-underline-offset: 6px;
 }

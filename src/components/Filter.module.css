@@ -4,3 +4,84 @@
   margin: 0 auto;
   height: 500px;
 }
+
+.filterContainer {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(20, 71, 30, 0.04);
+  padding: 24px 28px 18px 28px;
+  margin: 32px auto 40px auto;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+}
+
+.filterRow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filterLabel {
+  font-size: 15px;
+  color: #14471e;
+  font-family: 'Georgia', serif;
+  margin-bottom: 6px;
+}
+
+.filterInput,
+.filterSelect {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: inherit;
+  background: #fafafa;
+  color: #222;
+}
+
+.applyButton {
+  background: #14471e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 22px;
+  font-size: 16px;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  margin-left: auto;
+  transition: background 0.2s;
+}
+.applyButton:hover {
+  background: #111;
+}
+
+.collapseButton {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.collapseButton:hover {
+  background: #f0f0f0;
+  color: #14471e;
+}
+
+.collapsed {
+  padding: 10px 28px 10px 28px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

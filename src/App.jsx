@@ -3,7 +3,7 @@ import './styles/reset.css'
 import Layouts from './components/layouts/Layouts'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-import AnimalList from './pages/AnimalList'
+import AnimalProfile from './pages/AnimalProfile'
 import About from './pages/About'
 import Admin from './pages/Admin'
 import Login from './pages/Login'
@@ -16,7 +16,7 @@ function App() {
         {/* Основні маршрути з Layout */}
         <Route path="/" element={<Layouts />}>
           <Route index element={<Home />} />
-          <Route path="animal_list" element={<AnimalList />} />
+          <Route path="animal_profile" element={<AnimalProfile />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Route>

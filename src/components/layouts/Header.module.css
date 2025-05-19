@@ -1,12 +1,13 @@
 .header {
-  background-color: la;
+  background-color: #095145;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: aqua;
   height: 90px;
+  padding: 20px;
+  font-family: 'Georgia', serif;
 }
 
 /* .logo {
@@ -15,12 +16,62 @@
     color: #2c3e50;
 } */
 
+.headerButton {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  margin: 0px;
+  box-shadow: 0 4px 16px rgba(33, 80, 66, 0.18);
+}
+
+.headerButton:active {
+  box-shadow: 0 1px 3px rgba(33, 80, 66, 0.18);
+}
+
+.signIn {
+  background-color: #fff;
+  color: #0d3f35;
+}
+.signIn:hover {
+  /* background-color: #14471e; */
+  background-color: #0d3f35;
+  color: #fff;
+}
+
+.signUp {
+  background-color: #0d3f35;
+  color: #fff;
+  /* color: #215042;
+  border: 1.5px solid #215042; */
+}
+.signUp:hover {
+  background-color: #fff;
+  color: #0d3f35;
+  /* background-color: #e6f2ef;
+  color: #0d3f35; */
+}
+
 .nav {
-  margin-left: 1.5rem;
   font-size: 1rem;
   color: white;
   transition: color 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
 }
 .menu {
+  align-items: center;
   display: flex;
+  flex-direction: row;
+  gap: 18px;
+}
+
+.languageIcon {
+  font-size: 26px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s;
 }
