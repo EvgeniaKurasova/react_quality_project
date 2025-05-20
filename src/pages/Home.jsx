@@ -55,23 +55,25 @@ const Home = () => {
         <div className={styles.subtitle}>High Quality Lightroom Presets</div>
       </div>
       <div>
-        <button>Застосувати фільтр</button>
-        <button>Скинути фільтр</button>
         <Filter />
       </div>
       <div className={styles.postsGrid}>
         {posts.map((post) => (
           <div className={styles.postCard} key={post.id}>
-            <img
-              className={styles.postImage}
-              src={post.image}
-              alt={post.title}
-            />
+            <div className={styles.animalImageWrapper}>
+              <img
+                className={styles.animalImage}
+                src={post.image}
+                alt={post.title}
+              />
+            </div>
+            <div className={styles.postInfo}>
             <div className={styles.postTitle}>{post.title}</div>
             <div className={styles.postDesc}>{post.gender}</div>
-            <button>
+            <button className={styles.postButton}>
               <NavLink to="animal_profile">Переглянути профіль</NavLink>
             </button>
+            </div>
           </div>
         ))}
       </div>

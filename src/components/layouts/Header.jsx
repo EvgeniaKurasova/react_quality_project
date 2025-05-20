@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import styles from './Header.module.css'
-import { MdLanguage } from 'react-icons/md'
+import { GrLanguage } from "react-icons/gr";
 
 const Header = () => {
   return (
@@ -19,7 +19,7 @@ const Header = () => {
         <button className={`${styles.headerButton} ${styles.signUp}`}>
           Sign Up
         </button>
-        <MdLanguage title="language" className={styles.languageIcon} />
+        <GrLanguage title="language" className={styles.languageIcon} />
       </div>
     </header>
   )

@@ -77,7 +77,7 @@ h4 {
   font-family: 'Georgia', serif;
   font-size: 20px;
   font-weight: normal;
-  color: #555;
+  color: #0d3f35;
   /* margin: 0 0 10px 0; */
   line-height: 1.5;
 }
@@ -90,16 +90,10 @@ p {
 }
 button {
   font-family: 'Georgia', sans-serif;
-  font-size: 16px;
   font-weight: bold;
-  background-color: #007bff; /* Колір фону */
-  color: white; /* Колір тексту */
   cursor: pointer;
-  transition: background-color 0.3s; /* Анімація на hover */
-}
-
-button:hover {
-  background-color: #0056b3; /* Колір фону при наведенні */
+  transition: background-color 0.3s;
+  margin: 0px; /* Анімація на hover */
 }
 
 button:active {
