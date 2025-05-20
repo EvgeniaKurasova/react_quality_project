@@ -8,6 +8,7 @@ import About from './pages/About'
 import Admin from './pages/Admin'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
+import AnimalList from './pages/AnimalList'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="animal_profile" element={<AnimalProfile />} />
           <Route path="about" element={<About />} />
+          <Route path="animal-list" element={<AnimalList />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
 
