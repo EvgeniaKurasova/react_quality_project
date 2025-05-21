@@ -27,6 +27,15 @@ const AnimalProfile = () => {
     'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&h=600&fit=crop',
   ]
 
+  // Масив правил усиновлення (тимчасово, потім буде з бекенду)
+  const rules = [
+    'Тварина має бути забезпечена належним доглядом.',
+    'Заборонено передавати тварину третім особам без погодження з притулком.',
+    "Власник зобов'язується вакцинувати тварину згідно з графіком.",
+    'У разі втрати тварини повідомити притулок протягом 24 годин.У разі втрати тварини повідомити притулок протягом 24 годин.У разі втрати тварини повідомити притулок протягом 24 годин.',
+    'Не використовувати тварину для розведення.',
+  ]
+
   return (
     <div className={styles.animalProfileContainer}>
       <div className={styles.animalProfile}>
@@ -115,12 +124,26 @@ const AnimalProfile = () => {
           </p>
         </div>
       </div>
-      <div className={styles.adoptionSection}>
-<h2>Правила усиновлення</h2>
-<div></div>
-      </div>
-      <div className={styles.adoptionSection}>
-        <AdoptionRequest />
+      <div className={styles.profileSubPart}>
+        <div className={styles.adoptionRequest}>
+          <button className={styles.labelRequest}>Усиновити</button>
+          <div className={styles.adoptionSection}>
+            <AdoptionRequest />
+          </div>
+        </div>
+        <div className={styles.adoptionRules}>
+          <h2 className={styles.labelRules}>Правила усиновлення</h2>
+          <ul className={styles.rulesList}>
+            {rules.map((rule, idx) => (
+              <li
+                key={idx}
+                className={idx % 2 === 0 ? styles.ruleEven : styles.ruleOdd}
+              >
+                {rule}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   )

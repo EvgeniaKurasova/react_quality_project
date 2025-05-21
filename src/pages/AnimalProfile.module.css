@@ -24,13 +24,13 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.additionalInfo{
-    background: #fff;
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
-    border: 1.5px solid #b2cfc2;
-    margin-left: 18px;
+.additionalInfo {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
+  border: 1.5px solid #b2cfc2;
+  margin-left: 18px;
 }
 /* Контейнер для галереї */
 .animalGallery {
@@ -168,26 +168,21 @@
   .animalProfileContainer {
     padding: 20px 16px;
   }
-
   .animalName {
     font-size: 28px;
   }
-
   .animalDetails {
     padding: 20px;
   }
-
   /* Приховуємо стрілки на мобільних */
   .swiper-button-next,
   .swiper-button-prev {
     display: none !important;
   }
-
   /* Зменшуємо висоту галереї */
   .animalGallery {
     height: 400px;
   }
-
   /* Зменшуємо висоту слайдера */
   .swiper {
     height: 300px;
@@ -196,16 +191,79 @@
   .thumbsSwiper {
     height: 60px !important;
   }
-
   .thumbSlide {
     width: 90px !important;
     height: 60px !important;
   }
 }
-
 /* Адаптивні стилі для планшетів */
 @media (max-width: 900px) {
   .animalProfile {
     grid-template-columns: 1fr;
   }
+}
+.adoptionRules {
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
+  border: 1.5px solid #b2cfc2;
+  max-width: 50%;
+  position: relative;
+  padding-top: 60px;
+}
+.labelRules{
+border: 1px solid #14471e;
+padding: 22px;
+border-radius: 50px;
+color: #fff;
+background-color: #0d3f35;
+display: inline-block;
+position: absolute;
+bottom: 400px;
+left: -40px;
+text-align: center;
+}
+.profileSubPart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 18px;
+  gap: 44px;
+}
+
+.rulesList {
+  list-style: disc inside;
+  margin: 18px 0 0 0;
+  padding: 0;
+}
+
+.ruleEven {
+  background: #e6f2ef;
+  color: #14471e;
+  padding: 10px 16px;
+  border-radius: 4px;
+}
+
+.ruleOdd {
+  background: #fffbe6;
+  /* color: #bfa100; */
+  color: #14471e;
+  padding: 10px 16px;
+  border-radius: 4px;
+}
+.labelRequest{
+    /* border: 1px solid #14471e; */
+padding: 22px;
+border-radius: 15px;
+color: #fff;
+background-color: #f9a66c;
+text-align: center;
+width: 100%;
+}
+.adoptionRequest{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
