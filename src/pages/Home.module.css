@@ -40,7 +40,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 18px;
-  padding: 40px 0;
+  padding: 24px 0;
 }
 
 .postCard {
@@ -94,11 +94,13 @@
   display: block;
 }
 .postButton{
-  background-color: #14471e;
+  /* background-color: #14471e; */
+  background-color: #095145;
   border-radius: 50px;
   font-family: 'Georgia', sans-serif;
   font-size: 14px;
   max-width: 180px;
+  color: #fff;
   /* font-weight: bold; */
 }
 .postInfo{

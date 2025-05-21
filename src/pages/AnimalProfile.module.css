@@ -1,0 +1,211 @@
+/* Основний контейнер сторінки */
+.animalProfileContainer {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 60px 50px 90px 50px;
+  font-family: 'Georgia', serif;
+  background: #fff;
+  min-height: 100vh;
+}
+
+/* Контейнер для основного контенту */
+.animalProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 40px;
+  background: #fff;
+}
+
+/* Контейнер для головної інформації (фото + деталі) */
+.animalProfileMain {
+  display: flex;
+  gap: 24px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.additionalInfo{
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
+    border: 1.5px solid #b2cfc2;
+    margin-left: 18px;
+}
+/* Контейнер для галереї */
+.animalGallery {
+  background: #f8fbfa;
+  border-radius: 2px;
+  /*  height: 680px;  Висота для галереї з мініатюрами */
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
+  /* border: 1.5px solid #b2cfc2; */
+  overflow: hidden;
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+}
+.sliderWithArrows {
+  display: flex;
+  flex-direction: row;
+}
+.customNavBtn {
+  /* position: absolute; */
+  align-self: center;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* Стилі для головного слайдера */
+.swiper {
+  width: 100%;
+  height: 540px; /* Висота для головного слайдера */
+}
+/* Стилі для кожного слайда */
+.swiperSlide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fbfa;
+  height: 100%;
+}
+
+/* Стилі для зображень у слайдах */
+.swiperSlide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Стилі для слайдера мініатюр */
+.thumbsSwiper {
+  height: 80px !important;
+  margin-top: 18px;
+  /* width: 100% !important; */
+}
+
+/* Стилі для мініатюр */
+.thumbSlide {
+  /* Фіксована ширина для мініатюр */
+  width: 126px !important;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  overflow: hidden;
+}
+
+/* Стилі для зображень у мініатюрах */
+.thumbSlide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Стилі для інформації про тварину */
+.animalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  width: 100%;
+}
+
+/* Стилі для заголовка */
+.animalName {
+  font-size: 32px;
+  color: #0d3f35;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+/* Стилі для блоку з деталями */
+.animalDetails {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
+  border: 1.5px solid #b2cfc2;
+}
+
+/* Стилі для списку деталей */
+.detailsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Стилі для елементів списку */
+.detailsList li {
+  padding: 12px 0;
+  border-bottom: 1.5px solid #b2cfc2;
+  color: #0d3f35;
+  font-size: 17px;
+}
+
+/* Прибираємо нижню межу у останнього елемента */
+.detailsList li:last-child {
+  border-bottom: none;
+}
+
+/* Стилі для секції усиновлення */
+.adoptionSection {
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
+  border: 1.5px solid #b2cfc2;
+}
+
+/* Оновлені медіа-запити для мініатюр */
+@media (max-width: 600px) {
+  .animalProfileContainer {
+    padding: 20px 16px;
+  }
+
+  .animalName {
+    font-size: 28px;
+  }
+
+  .animalDetails {
+    padding: 20px;
+  }
+
+  /* Приховуємо стрілки на мобільних */
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+
+  /* Зменшуємо висоту галереї */
+  .animalGallery {
+    height: 400px;
+  }
+
+  /* Зменшуємо висоту слайдера */
+  .swiper {
+    height: 300px;
+  }
+
+  .thumbsSwiper {
+    height: 60px !important;
+  }
+
+  .thumbSlide {
+    width: 90px !important;
+    height: 60px !important;
+  }
+}
+
+/* Адаптивні стилі для планшетів */
+@media (max-width: 900px) {
+  .animalProfile {
+    grid-template-columns: 1fr;
+  }
+}

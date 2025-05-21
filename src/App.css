@@ -84,7 +84,7 @@ h4 {
 p {
   font-size: 16px;
   line-height: 1.6; /* Міжрядковий інтервал */
-  margin: 0 0 15px 0; /* Відступи між абзацами */
+  margin: 15px 0 0 0; /* Відступи між абзацами */
   color: #666; /* Колір тексту */
   font-weight: normal;
 }
@@ -109,4 +109,18 @@ button:disabled {
   /* color: black; */
   text-decoration: underline;
   text-underline-offset: 6px;
+}
+
+.swiper-pagination-bullet {
+  /* background: #b2cfc2 !important; */
+  opacity: 0.9;
+  background-color: #095145 !important;
+
+}
+
+.swiper-pagination-bullet-active {
+  /* background: #0d3f35 !important; колір активної */
+  /* background-color: #095145 !important; */
+  background-color: #333 !important;
+  opacity: 1;
 }
