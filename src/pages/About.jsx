@@ -1,9 +1,13 @@
-import Login from '../pages/Login.jsx'
+import ForgotPassword from '../components/ForgotPassword.jsx'
+import SignInForm from '../components/SignIn.jsx'
+import SignUp from '../components/SignUp.jsx'
 
 const About = () => {
   return (
     <div>
-      <Login />
+      <SignInForm />
+      <SignUp/>
+      <ForgotPassword/>
     </div>
   )
 }

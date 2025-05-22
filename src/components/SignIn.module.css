@@ -1,0 +1,83 @@
+.authModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.authForm {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
+  border: 1.5px solid #b2cfc2;
+  font-family: 'Georgia', serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.authTitle{
+    align-self: center;
+    margin-bottom: 14px;
+}
+/* color: #0d3f35; */
+.authForm input {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #b2cfc2;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.authForm input:focus {
+  outline: none;
+  border-color: #f9a66c;
+}
+.forgotPasswordButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #0d3f35;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.forgotPasswordButton:hover {
+  background: #f9a66c;
+}
+
+.authForm p button {
+  background: none;
+  border: none;
+  color: #f9a66c;
+  cursor: pointer;
+  font-size: 14px;
+}
+.authForm p button:hover {
+  text-decoration: underline;
+}
+.forgotPasswordClick {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 14px;
+  padding: 5px;
+  width: auto; /* ключовий момент */
+}
+.forgotPasswordClick:focus {
+  /* outline: none;
+    text-decoration: none; */
+  background: none;
+  border: none;
+  color: #f9a66c;
+}
+.forgotPasswordClick:hover {
+  text-decoration: underline;
+}
