@@ -1,0 +1,28 @@
+.requestLabel {
+  color: #222;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b2cfc2;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  margin-bottom: 12px;
+  margin-top: 4px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0d3f35;
+}
+
+textarea {
+  min-height: 100px;
+  max-width: 462px;
+  /* resize: vertical; */
+  font-family: inherit;
+}

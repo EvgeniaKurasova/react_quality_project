@@ -57,7 +57,9 @@ const Filter = () => {
         <div className={styles.filterItems}>
           <div className={styles.filterItemsRow}>
             <div className={styles.filterItemRow}>
-              <h4 htmlFor="dropdown" className={styles.h4Up}>Виберіть тип:</h4>
+              <h4 htmlFor="dropdown" className={styles.h4Up}>
+                Виберіть тип:
+              </h4>
               <select id="dropdown">
                 <option value="">усі</option>
                 <option value="option1">собаки</option>

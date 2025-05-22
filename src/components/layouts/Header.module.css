@@ -12,7 +12,7 @@
 
 .logo {
   font-size: 1.5rem;
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .headerButton {
@@ -20,7 +20,6 @@
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  cursor: pointer;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   margin: 0px;
   box-shadow: 0 4px 16px rgba(33, 80, 66, 0.18);
@@ -73,4 +72,21 @@
   color: #fff;
   cursor: pointer;
   transition: color 0.2s;
+}
+.languageButton {
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  color: #0d3f35;
+  font-size: 16px;
+}
+.languageButton:hover {
+  background-color: #0d3f35;
+  color: #fff;
+  border: 1px solid #fff;
 }

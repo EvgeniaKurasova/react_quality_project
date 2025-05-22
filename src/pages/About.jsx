@@ -1,5 +1,11 @@
+import Login from '../pages/Login.jsx'
+
 const About = () => {
-  return <div>About</div>
+  return (
+    <div>
+      <Login />
+    </div>
+  )
 }
 
 export default About

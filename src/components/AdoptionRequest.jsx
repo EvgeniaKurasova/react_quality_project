@@ -1,25 +1,74 @@
+import styles from './AdoptionRequest.module.css'
+
 const AdoptionRequest = () => {
   return (
     <form>
       <div>
-        <label>Name</label>
-        <input type="name" id="name" value="" onChange="" required />
+        <label className={styles.requestLabel} htmlFor="first Name">
+          FirstName
+        </label>
+        <input
+          id="firstName"
+          name="firstName"
+          type="text"
+          onChange={() => {}}
+          required
+        />
       </div>
       <div>
-        <label>City</label>
-        <input type="city" id="city" value="" onChange="" />
+        <label className={styles.requestLabel} htmlFor="lastName">
+          Last Name
+        </label>
+        <input
+          id="lastName"
+          name="lastName"
+          type="text"
+          onChange={() => {}}
+          required
+        />
       </div>
       <div>
-        <label>Phone</label>
-        <input type="phone" id="phone" value="" onChange="" required />
+        <label className={styles.requestLabel} htmlFor="city">
+          City
+        </label>
+        <input id="city" name="city" type="text" onChange={() => {}} />
       </div>
       <div>
-        <label>Email</label>
-        <input type="email" id="email" value="" onChange="" required />
+        <label className={styles.requestLabel} htmlFor="phone">
+          Phone Number
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          onChange={() => {}}
+          required
+        />
       </div>
       <div>
-        <label>Comment</label>
-        <input type="comment" id="comment" value="" onChange="" />
+        <label className={styles.requestLabel} htmlFor="email">
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="you@example.com"
+          onChange={() => {}}
+          required
+        />
+      </div>
+      <div>
+        <label className={styles.requestLabel} htmlFor="message">
+          Your Message
+        </label>
+        <textarea
+          type="submit"
+          id="message"
+          name="message"
+          value=""
+          onChange={() => {}}
+        ></textarea>
       </div>
       <button>Send request</button>
     </form>

@@ -63,7 +63,6 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
-
 /* Стилі для головного слайдера */
 .swiper {
   width: 100%;
@@ -77,21 +76,18 @@
   background: #f8fbfa;
   height: 100%;
 }
-
 /* Стилі для зображень у слайдах */
 .swiperSlide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 /* Стилі для слайдера мініатюр */
 .thumbsSwiper {
   height: 80px !important;
   margin-top: 18px;
   /* width: 100% !important; */
 }
-
 /* Стилі для мініатюр */
 .thumbSlide {
   /* Фіксована ширина для мініатюр */
@@ -100,14 +96,12 @@
   transition: opacity 0.3s;
   overflow: hidden;
 }
-
 /* Стилі для зображень у мініатюрах */
 .thumbSlide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 /* Стилі для інформації про тварину */
 .animalInfo {
   display: flex;
@@ -129,9 +123,9 @@
 .animalDetails {
   background: #fff;
   padding: 24px;
-  border-radius: 12px;
+  border-radius: 2px;
   box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
-  border: 1.5px solid #b2cfc2;
+  /* border: 1.5px solid #b2cfc2; */
 }
 
 /* Стилі для списку деталей */
@@ -152,6 +146,7 @@
 /* Прибираємо нижню межу у останнього елемента */
 .detailsList li:last-child {
   border-bottom: none;
+  margin-bottom: 28px;
 }
 
 /* Стилі для секції усиновлення */
@@ -209,20 +204,20 @@
   box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
   border: 1.5px solid #b2cfc2;
   max-width: 50%;
-  position: relative;
   padding-top: 60px;
+  align-self: flex-start;
 }
-.labelRules{
-border: 1px solid #14471e;
-padding: 22px;
-border-radius: 50px;
-color: #fff;
-background-color: #0d3f35;
-display: inline-block;
-position: absolute;
-bottom: 400px;
-left: -40px;
-text-align: center;
+.labelRules {
+  border: 1px solid #14471e;
+  padding: 22px;
+  border-radius: 50px;
+  color: #fff;
+  background-color: #0d3f35;
+  display: inline-block;
+  position: absolute;
+  bottom: -560px;
+  left: 615px;
+  text-align: center;
 }
 .profileSubPart {
   display: flex;
@@ -244,6 +239,9 @@ text-align: center;
   padding: 10px 16px;
   border-radius: 4px;
 }
+.ruleEven :first-child {
+  position: relative;
+}
 
 .ruleOdd {
   background: #fffbe6;
@@ -252,18 +250,34 @@ text-align: center;
   padding: 10px 16px;
   border-radius: 4px;
 }
-.labelRequest{
-    /* border: 1px solid #14471e; */
-padding: 22px;
-border-radius: 15px;
-color: #fff;
-background-color: #f9a66c;
-text-align: center;
-width: 100%;
+.labelRequest {
+  /* border: 1px solid #14471e; */
+  padding: 22px;
+  border-radius: 15px;
+  color: #fff;
+  background-color: #f9a66c;
+  text-align: center;
+  width: 100%;
 }
-.adoptionRequest{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+.adoptionRequest {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  /* transition: height 1.2s ease-out, opacity 0.5s ease-out; */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px); /* збільшили відстань для більш помітного ефекту */
+  transition: all 1.4s ease-out;
+}
+
+.adoptionRequest.visible {
+  /* display: block;
+  visibility: visible; */
+  max-height: 800px;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition-delay: 0.6s;
 }

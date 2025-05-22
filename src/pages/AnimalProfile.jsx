@@ -16,6 +16,7 @@ const AnimalProfile = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const prevRef = useRef(null)
   const nextRef = useRef(null)
+  const [isFormOpen, setIsFormOpen] = useState(false)
 
   // Тимчасові дані для прикладу
   const images = [
@@ -29,12 +30,24 @@ const AnimalProfile = () => {
 
   // Масив правил усиновлення (тимчасово, потім буде з бекенду)
   const rules = [
-    'Тварина має бути забезпечена належним доглядом.',
+    'Тварина має бути забезпечена належним доглядом.Тварина має бути забезпечена належним доглядом.Тварина має бути забезпечена належним доглядом.Тварина має бути забезпечена належним доглядом.',
     'Заборонено передавати тварину третім особам без погодження з притулком.',
     "Власник зобов'язується вакцинувати тварину згідно з графіком.",
     'У разі втрати тварини повідомити притулок протягом 24 годин.У разі втрати тварини повідомити притулок протягом 24 годин.У разі втрати тварини повідомити притулок протягом 24 годин.',
     'Не використовувати тварину для розведення.',
   ]
+
+  const scrollToForm = () => {
+    const formElement = document.getElementById('adoptionRequest')
+    const offset = 100 // відступ зверху
+    const elementPosition = formElement.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.scrollY - offset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <div className={styles.animalProfileContainer}>
@@ -98,12 +111,23 @@ const AnimalProfile = () => {
             <div className={styles.animalDetails}>
               <h1 className={styles.animalName}>Ім'я тварини</h1>
               <ul className={styles.detailsList}>
-                <li>Вік:</li>
                 <li>Стать:</li>
+                <li>Вік:</li>
                 <li>Вид:</li>
                 <li>Розмір:</li>
                 <li>Стерилізація: Так</li>
               </ul>
+              <button
+                className={styles.labelRequest}
+                onClick={() => {
+                  if (!isFormOpen) {
+                    setIsFormOpen(true)
+                  }
+                  setTimeout(scrollToForm, 300)
+                }}
+              >
+                Усиновити
+              </button>
             </div>
           </div>
         </div>
@@ -125,8 +149,12 @@ const AnimalProfile = () => {
         </div>
       </div>
       <div className={styles.profileSubPart}>
-        <div className={styles.adoptionRequest}>
-          <button className={styles.labelRequest}>Усиновити</button>
+        <div
+          id="adoptionRequest"
+          className={`${styles.adoptionRequest} ${
+            isFormOpen ? styles.visible : ''
+          }`}
+        >
           <div className={styles.adoptionSection}>
             <AdoptionRequest />
           </div>

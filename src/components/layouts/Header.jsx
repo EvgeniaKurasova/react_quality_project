@@ -19,7 +19,8 @@ const Header = () => {
         <button className={`${styles.headerButton} ${styles.signUp}`}>
           Sign Up
         </button>
-        <GrLanguage title="language" className={styles.languageIcon} />
+        <button className={styles.languageButton}>EN</button>
+        {/* <GrLanguage title="language" className={styles.languageIcon} /> */}
       </div>
     </header>
   )
