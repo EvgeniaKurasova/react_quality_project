@@ -68,11 +68,14 @@ const Home = () => {
               />
             </div>
             <div className={styles.postInfo}>
-            <div className={styles.postTitle}>{post.title}</div>
-            <div className={styles.postDesc}>{post.gender}</div>
-            <button className={styles.postButton}>
-              <NavLink to="animal_profile">Переглянути профіль</NavLink>
-            </button>
+              <div className={styles.postTitle}>{post.title}</div>
+              <div className={styles.postDesc}>{post.gender}</div>
+
+              <NavLink to="animal_profile">
+                <button className={styles.postButton}>
+                  Переглянути профіль
+                </button>
+              </NavLink>
             </div>
           </div>
         ))}

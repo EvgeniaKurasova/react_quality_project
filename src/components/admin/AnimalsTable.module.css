@@ -1,8 +1,10 @@
+/* Контейнер для таблиці, додає горизонтальний скролл на малих екранах */
 .tableContainer {
   width: 100%;
   overflow-x: auto;
 }
 
+/* Основна таблиця */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -10,6 +12,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+/* Загальні стилі для комірок */
 .table th,
 .table td {
   padding: 12px 15px;
@@ -17,15 +20,18 @@
   border-bottom: 1px solid #ddd;
 }
 
+/* Заголовки таблиці */
 .table th {
   background-color: #f8f9fa;
   font-weight: 600;
 }
 
+/* Ховер-ефект для рядків */
 .table tr:hover {
   background-color: #f5f5f5;
 }
 
+/* Кнопки редагування та видалення */
 .editButton,
 .deleteButton {
   padding: 6px 12px;
@@ -36,11 +42,13 @@
   font-size: 14px;
 }
 
+/* Кнопка редагування */
 .editButton {
   background-color: #3498db;
   color: white;
 }
 
+/* Кнопка видалення */
 .deleteButton {
   background-color: #e74c3c;
   color: white;
@@ -54,6 +62,7 @@
   background-color: #c0392b;
 }
 
+/* Стиль для повідомлення "Немає записів" */
 .noData {
   text-align: center;
   padding: 20px;

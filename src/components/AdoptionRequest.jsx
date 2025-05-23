@@ -53,7 +53,6 @@ const AdoptionRequest = () => {
           id="email"
           name="email"
           type="email"
-          placeholder="you@example.com"
           onChange={() => {}}
           required
         />

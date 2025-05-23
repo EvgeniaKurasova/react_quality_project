@@ -1,3 +1,4 @@
+/* Контейнер для форми додавання тварини */
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -7,6 +8,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Хедер з кнопкою "Назад" */
 .header {
   display: flex;
   align-items: center;
@@ -18,6 +20,7 @@
   margin: 0;
 }
 
+/* Кнопка "Назад" */
 .backButton {
   padding: 8px 16px;
   border: none;
@@ -31,22 +34,26 @@
   color: #333;
 }
 
+/* Основна форма */
 .form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+/* Група полів у формі */
 .formGroup {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
+/* Якщо в групі лише одне поле — одна колонка */
 .formGroup:has(> :only-child) {
   grid-template-columns: 1fr;
 }
 
+/* Група для одного поля */
 .inputGroup {
   display: flex;
   flex-direction: column;
@@ -73,6 +80,7 @@
   border-color: #4caf50;
 }
 
+/* Кнопка "Додати" */
 .submitButton {
   padding: 12px 24px;
   background-color: #4caf50;
