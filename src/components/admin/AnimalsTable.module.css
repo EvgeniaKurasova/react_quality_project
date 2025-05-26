@@ -1,83 +1,122 @@
-/* Контейнер для таблиці, додає горизонтальний скролл на малих екранах */
 .tableContainer {
-  width: 100%;
+  margin: 32px 0;
+  border-radius: 4px;
   overflow-x: auto;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13);
+  background: #fff;
+  font-family: 'Georgia', 'Inter', 'Segoe UI', Arial, sans-serif;
+  max-width: 100%;
+}
+.mainTableContainer {
+  overflow-x: auto;
+  max-width: 100%;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13);
+}
+/* Контейнер для таблиці, додає горизонтальний скролл на малих екранах */
+.tablesContainer {
+  margin: 32px 0;
+  border-radius: 4px;
+  /* overflow-x: auto; */
+
+  font-family: 'Georgia', 'Inter', 'Segoe UI', Arial, sans-serif;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 /* Основна таблиця */
 .table {
   width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Загальні стилі для комірок */
-.table th,
-.table td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 16px;
+  background: #fff;
+  font-family: inherit;
+  /* box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13); */
 }
 
 /* Заголовки таблиці */
 .table th {
-  background-color: #f8f9fa;
-  font-weight: 600;
+  color: #0d3f35;
+  font-weight: 700;
+  padding: 16px 12px;
+  text-align: left;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #b2cfc2;
+  font-family: inherit;
+  /* word-break: break-all; */
+  white-space: normal;
+
+}
+
+/* Комірки таблиці */
+.table td {
+  color: #222;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e6f2ef;
+  background: #fff;
+  font-family: inherit;
 }
 
 /* Ховер-ефект для рядків */
-.table tr:hover {
-  background-color: #f5f5f5;
+.table tr:hover td {
+  background: #f9a66c22;
+  transition: background 0.2s;
 }
 
 /* Кнопки редагування та видалення */
 .editButton,
 .deleteButton {
-  padding: 6px 12px;
-  margin: 0 4px;
+  padding: 8px 18px;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 40px;
   font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px 0 rgba(20, 71, 30, 0.04);
+  margin-right: 8px;
+  width: 122px;
 }
 
 /* Кнопка редагування */
 .editButton {
-  background-color: #3498db;
-  color: white;
+  background: #f9a66c;
+  color: #fff;
+  margin-bottom: 6px;
 }
 
 /* Кнопка видалення */
 .deleteButton {
-  background-color: #e74c3c;
-  color: white;
+  background: #ff4d4f;
+  color: #fff;
 }
 
 .editButton:hover {
-  background-color: #2980b9;
+  background: #fbbd8b;
 }
 
 .deleteButton:hover {
-  background-color: #c0392b;
+  background: #d9363e;
 }
 
 /* Стиль для повідомлення "Немає записів" */
 .noData {
+  color: #0d3f35;
   text-align: center;
-  padding: 20px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  color: #666;
+  padding: 32px 0;
+  font-size: 20px;
+  font-family: inherit;
 }
 
 .mainPhoto {
-  width: 48px;
-  height: 48px;
+  /* width: 48px;
+  height: 48px; */
   object-fit: cover;
   border-radius: 6px;
-  border: 2px solid #14471e;
+  border: 1.5px solid #aaa;
   box-shadow: 0 0 6px #14471e33;
   background: #f8f9fa;
 }
@@ -107,4 +146,10 @@
   display: flex;
   gap: 6px;
   align-items: center;
+}
+
+.breakable {
+  word-break: break-all;
+  white-space: normal;
+  max-width: 180px;
 }

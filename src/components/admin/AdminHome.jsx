@@ -20,6 +20,10 @@ const AdminHome = () => {
         <button onClick={() => navigate('adoption-requests')}>
           Запити на усиновлення
         </button>
+        <button onClick={() => navigate('users')}>Зареєстровані користувачі</button>
+        <button onClick={() => navigate('shelter-info')}>
+          Інформація про притулок
+        </button>
       </div>
     </div>
   )

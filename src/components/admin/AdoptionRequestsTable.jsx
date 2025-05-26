@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styles from './AdoptionRequestsTable.module.css'
 
-// Тестові дані для перегляду таблиці
 const testRequests = [
   {
     id: 1,

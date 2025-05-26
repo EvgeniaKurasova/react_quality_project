@@ -1,0 +1,181 @@
+.adoptionRulesTitle {
+  margin: 32px 0 12px 0;
+  font-size: 20px;
+  color: #14471e;
+  font-weight: 600;
+}
+/* Контейнер для таблиці, додає горизонтальний скролл на малих екранах */
+.tablesContainer {
+  margin: 32px 0;
+  border-radius: 4px;
+  /* overflow-x: auto; */
+
+  font-family: 'Georgia', 'Inter', 'Segoe UI', Arial, sans-serif;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Основна таблиця */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 16px;
+  background: #fff;
+  font-family: inherit;
+  /* box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13); */
+}
+
+/* Хедер таблиці */
+.table thead {
+  background: #e6f2ef;
+}
+
+/* Заголовки таблиці */
+.table th {
+  color: #0d3f35;
+  font-weight: 700;
+  padding: 16px 12px;
+  text-align: left;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #b2cfc2;
+  font-family: inherit;
+  word-break: break-all;
+  white-space: normal;
+  max-width: 60px; /* або інше обмеження ширини */
+}
+
+/* Комірки таблиці */
+.table td {
+  color: #222;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e6f2ef;
+  background: #fff;
+  font-family: inherit;
+}
+
+/* Ховер-ефект для рядків */
+.table tr:hover td {
+  background: #f9a66c22;
+  transition: background 0.2s;
+}
+
+/* Кнопки редагування та видалення */
+.editButton,
+.deleteButton {
+  padding: 8px;
+  border: none;
+  border-radius: 40px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px 0 rgba(20, 71, 30, 0.04);
+  width: 122px;
+}
+
+/* Кнопка редагування */
+.editButton {
+  background: #f9a66c;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.editButton:hover {
+  background: #fbbd8b;
+}
+
+/* Кнопка видалення */
+.deleteButton {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+.deleteButton:hover {
+  background: #d9363e;
+}
+
+/* Стиль для повідомлення "Немає записів" */
+.noData {
+  color: #0d3f35;
+  text-align: center;
+  padding: 32px 0;
+  font-size: 20px;
+  font-family: inherit;
+}
+
+.mainPhoto {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid #14471e;
+  box-shadow: 0 0 6px #14471e33;
+  background: #f8f9fa;
+}
+
+.photo {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #b2cfc2;
+  background: #f8f9fa;
+}
+
+.additionalPhotosTitle {
+  margin: 32px 0 12px 0;
+  font-size: 20px;
+  color: #14471e;
+  font-weight: 600;
+}
+
+.noPhoto {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.extraPhotosCell {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.addButton {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 40px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px 0 rgba(20, 71, 30, 0.04);
+  background: #2ecc71;
+  color: #fff;
+}
+
+.addButton:hover {
+  background: #27ae60;
+}
+
+.mainTableContainer {
+  overflow-x: auto;
+  max-width: 100%;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13);
+
+}
+.tableContainer {
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13);
+
+}
+
+.rulesHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0 12px 0;
+}

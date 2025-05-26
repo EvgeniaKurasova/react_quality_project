@@ -1,0 +1,92 @@
+.tableContainer {
+  margin: 32px 0;
+  border-radius: 4px;
+  overflow-x: auto;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13);
+  background: #fff;
+  font-family: 'Georgia', 'Inter', 'Segoe UI', Arial, sans-serif;
+  max-width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 16px;
+  background: #fff;
+  font-family: inherit;
+}
+
+.table thead {
+  background: #e6f2ef;
+}
+
+.table th {
+  color: #0d3f35;
+  font-weight: 700;
+  padding: 16px 12px;
+  text-align: left;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #b2cfc2;
+  font-family: inherit;
+}
+
+.table td {
+  color: #222;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e6f2ef;
+  background: #fff;
+  font-family: inherit;
+}
+
+.table tr:hover td {
+  background: #f9a66c22;
+  transition: background 0.2s;
+}
+
+.editButton,
+.deleteButton {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 40px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px 0 rgba(20, 71, 30, 0.04);
+  margin-right: 8px;
+}
+
+.editButton {
+  background: #f9a66c;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.editButton:hover {
+  background: #fbbd8b;
+}
+
+.deleteButton {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+.deleteButton:hover {
+  background: #d9363e;
+}
+
+.noData {
+  color: #0d3f35;
+  text-align: center;
+  padding: 32px 0;
+  font-size: 20px;
+  font-family: inherit;
+}
+
+.breakable {
+  word-break: break-all;
+  white-space: normal;
+  max-width: 180px;
+}

@@ -8,15 +8,15 @@ export default function AddAnimal() {
     name_en: '',
     type: '',
     type_en: '',
-    sex: '',
-    sex_en: '',
-    age: '',
+    gender: '',
+    age_years: '',
+    age_months: '',
     size: '',
     size_en: '',
-    location: '',
-    location_en: '',
+    isSterilizet: '',
     description: '',
     description_en: '',
+    ag_updated_at: '',
   })
 
   const handleChange = (e) => {
@@ -47,9 +47,9 @@ export default function AddAnimal() {
             <label htmlFor="name_ua">Ім'я*</label>
             <input
               type="text"
-              id="name_ua"
-              name="name_ua"
-              value={animal.name_ua}
+              id="name"
+              name="name"
+              value={animal.name}
               onChange={handleChange}
               required
             />
@@ -93,37 +93,53 @@ export default function AddAnimal() {
 
         <div className={styles.formGroup}>
           <div className={styles.inputGroup}>
-            <label htmlFor="sex">Стать*</label>
-            <input
-              type="text"
-              id="sex"
-              name="sex"
-              value={animal.sex}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <label htmlFor="sex_en">Sex*</label>
-            <input
-              type="text"
-              id="sex_en"
-              name="sex_en"
-              value={animal.sex_en}
-              onChange={handleChange}
-              required
-            />
+            <label>Стать/Gender*</label>
+            <div className={styles.radioGroup}>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="sex"
+                  value="Чоловіча"
+                  checked={animal.sex === 'Чоловіча'}
+                  onChange={handleChange}
+                  required
+                />
+                Чоловіча
+              </label>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="sex"
+                  value="Жіноча"
+                  checked={animal.sex === 'Жіноча'}
+                  onChange={handleChange}
+                  required
+                />
+                Жіноча
+              </label>
+            </div>
           </div>
         </div>
 
         <div className={styles.formGroup}>
           <div className={styles.inputGroup}>
-            <label htmlFor="age">Вік*</label>
+            <label htmlFor="age_years">Кількість років*</label>
             <input
               type="number"
-              id="age"
-              name="age"
-              value={animal.age}
+              id="age_years"
+              name="age_years"
+              value={animal.age_years}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="age_mounth">Кількість місяців*</label>
+            <input
+              type="number"
+              id="age_mounth"
+              name="age_mounth"
+              value={animal.age_mounth}
               onChange={handleChange}
               required
             />
@@ -155,24 +171,29 @@ export default function AddAnimal() {
 
         <div className={styles.formGroup}>
           <div className={styles.inputGroup}>
-            <label htmlFor="location">Місце перебування</label>
-            <input
-              type="text"
-              id="location"
-              name="location"
-              value={animal.location}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <label htmlFor="location_en">Location</label>
-            <input
-              type="text"
-              id="location_en"
-              name="location_en"
-              value={animal.location_en}
-              onChange={handleChange}
-            />
+            <label>Стерелізація</label>
+            <div className={styles.radioGroup}>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="isSterilizet"
+                  value="Так"
+                  checked={animal.isSterilizet === 'Так'}
+                  onChange={handleChange}
+                />
+                Так
+              </label>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="isSterilizet"
+                  value="Ні"
+                  checked={animal.isSterilizet === 'Ні'}
+                  onChange={handleChange}
+                />
+                Ні
+              </label>
+            </div>
           </div>
         </div>
 

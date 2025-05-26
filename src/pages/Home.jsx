@@ -1,6 +1,8 @@
 import Filter from '../components/Filter'
 import styles from './Home.module.css'
 import { NavLink } from 'react-router-dom'
+import { useGetAnimalsQuery } from '../redux/animalApi'
+import AnimalCards from '../components/AnimalCards'
 
 const posts = [
   {
@@ -57,7 +59,8 @@ const Home = () => {
       <div>
         <Filter />
       </div>
-      <div className={styles.postsGrid}>
+      <AnimalCards />
+      {/* <div className={styles.postsGrid}>
         {posts.map((post) => (
           <div className={styles.postCard} key={post.id}>
             <div className={styles.animalImageWrapper}>
@@ -79,7 +82,7 @@ const Home = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }
