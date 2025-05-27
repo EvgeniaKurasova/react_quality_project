@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './AddAnimal.module.css'
+import { useAddAnimalMutation } from '../../redux/animalApi'
 
 export default function AddAnimal() {
+  const [addAnimal, { isLoading, isSuccess, error }] = useAddAnimalMutation()
+
   const [animal, setAnimal] = useState({
     name: '',
     name_en: '',
@@ -27,9 +30,31 @@ export default function AddAnimal() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // TODO: Add logic to save animal
+    try {
+      await addAnimal(animal).unwrap()
+      alert('✅ Тварину додано успішно!')
+      // очищення форми, якщо потрібно:
+      setAnimal({
+        name: '',
+        name_en: '',
+        type: '',
+        type_en: '',
+        gender: '',
+        age_years: '',
+        age_months: '',
+        size: '',
+        size_en: '',
+        isSterilizet: '',
+        description: '',
+        description_en: '',
+        ag_updated_at: '',
+      })
+    } catch (err) {
+      console.error('❌ Помилка при додаванні тварини:', err)
+      alert('❌ Сталася помилка. Спробуйте ще раз.')
+    }
   }
 
   return (
@@ -220,7 +245,11 @@ export default function AddAnimal() {
           </div>
         </div>
 
-        <button type="submit" className={styles.submitButton}>
+        <button
+          type="submit"
+          className={styles.submitButton}
+          onClick={handleSubmit}
+        >
           Зберегти
         </button>
       </form>
