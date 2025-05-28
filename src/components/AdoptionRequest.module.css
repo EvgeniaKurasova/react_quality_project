@@ -1,5 +1,8 @@
 .requestLabel {
   color: #222;
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
 }
 
 input,
@@ -25,4 +28,61 @@ textarea {
   max-width: 462px;
   /* resize: vertical; */
   font-family: inherit;
+  resize: vertical;
+}
+
+.agreement {
+  margin: 20px 0;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #222;
+}
+
+.checkboxLabel input[type='checkbox'] {
+  width: auto;
+  margin: 0;
+}
+
+/* button {
+  background-color: #0d3f35;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  width: 100%;
+} */
+
+/* button:hover {
+  background-color: #14471e;
+} */
+
+button:disabled {
+  background-color: #b2cfc2;
+  cursor: not-allowed;
+}
+
+.success {
+  color: #0d3f35;
+  background-color: #e6f2ef;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.error {
+  color: #e74c3c;
+  background-color: #fde8e8;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 16px;
+  text-align: center;
 }

@@ -11,31 +11,39 @@ import {
   HiOutlineArrowSmallRight,
   HiOutlineArrowSmallLeft,
 } from 'react-icons/hi2'
+import { useParams } from 'react-router-dom'
+import { useGetAnimalByIdQuery } from '../redux/animalApi'
 
 const AnimalProfile = () => {
+  const { id } = useParams()
+  const { data: animal, isLoading, error } = useGetAnimalByIdQuery(id)
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const prevRef = useRef(null)
   const nextRef = useRef(null)
   const [isFormOpen, setIsFormOpen] = useState(false)
 
-  // Тимчасові дані для прикладу
-  const images = [
-    'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&h=600&fit=crop',
+  const rules = [
+    'Тварина має бути забезпечена належним доглядом.',
+    'Заборонено передавати тварину третім особам без погодження з притулком. Заборонено передавати тварину третім особам без погодження з притулком.Заборонено передавати тварину третім особам без погодження з притулком.',
+    "Власник зобов'язується вакцинувати тварину згідно з графіком. Власник зобов'язується вакцинувати тварину згідно з графіком.Власник зобов'язується вакцинувати тварину згідно з графіком.",
+    'У разі втрати тварини повідомити притулок протягом 24 годин.',
+    'Не використовувати тварину для розведення.',
+    'Забезпечити тварині регулярні ветеринарні огляди.',
+    'Надавати притулку фото та відео тварини щомісяця.',
+    'Не залишати тварину без нагляду більше 12 годин.',
   ]
 
-  // Масив правил усиновлення (тимчасово, потім буде з бекенду)
-  const rules = [
-    'Тварина має бути забезпечена належним доглядом.Тварина має бути забезпечена належним доглядом.Тварина має бути забезпечена належним доглядом.Тварина має бути забезпечена належним доглядом.',
-    'Заборонено передавати тварину третім особам без погодження з притулком.',
-    "Власник зобов'язується вакцинувати тварину згідно з графіком.",
-    'У разі втрати тварини повідомити притулок протягом 24 годин.У разі втрати тварини повідомити притулок протягом 24 годин.У разі втрати тварини повідомити притулок протягом 24 годин.',
-    'Не використовувати тварину для розведення.',
-  ]
+  if (isLoading) {
+    return <div className={styles.loading}>Завантаження...</div>
+  }
+
+  if (error) {
+    return <div className={styles.error}>Помилка завантаження даних</div>
+  }
+
+  if (!animal) {
+    return <div className={styles.noData}>Тварину не знайдено</div>
+  }
 
   const scrollToForm = () => {
     const formElement = document.getElementById('adoptionRequest')
@@ -80,9 +88,12 @@ const AnimalProfile = () => {
                 thumbs={{ swiper: thumbsSwiper }}
                 className={styles.swiper}
               >
-                {images.map((image, index) => (
-                  <SwiperSlide key={index} className={styles.swiperSlide}>
-                    <img src={image} alt={`Фото тварини ${index + 1}`} />
+                {animal.photos?.map((photo, index) => (
+                  <SwiperSlide key={photo.id} className={styles.swiperSlide}>
+                    <img
+                      src={photo.photo_path}
+                      alt={`Фото тварини ${index + 1}`}
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -93,9 +104,12 @@ const AnimalProfile = () => {
                 watchSlidesProgress={true}
                 className={styles.thumbsSwiper}
               >
-                {images.map((image, index) => (
-                  <SwiperSlide key={index} className={styles.thumbSlide}>
-                    <img src={image} alt={`Мініатюра ${index + 1}`} />
+                {animal.photos?.map((photo, index) => (
+                  <SwiperSlide key={photo.id} className={styles.thumbSlide}>
+                    <img
+                      src={photo.photo_path}
+                      alt={`Мініатюра ${index + 1}`}
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -109,13 +123,16 @@ const AnimalProfile = () => {
           </div>
           <div className={styles.animalInfo}>
             <div className={styles.animalDetails}>
-              <h1 className={styles.animalName}>Ім'я тварини</h1>
+              <h1 className={styles.animalName}>{animal.name}</h1>
               <ul className={styles.detailsList}>
-                <li>Стать:</li>
-                <li>Вік:</li>
-                <li>Вид:</li>
-                <li>Розмір:</li>
-                <li>Стерилізація: Так</li>
+                {/* переробити вік!!!!!!!!!!!!!!!!!! */}
+                <li>Стать: {animal.gender ? 'Хлопчик' : 'Дівчинка'}</li>
+                <li>
+                  Вік: {animal.age_years} років {animal.age_months} місяців
+                </li>
+                <li>Вид: {animal.type}</li>
+                <li>Розмір: {animal.size}</li>
+                <li>Стерилізація: {animal.is_sterilized}</li>
               </ul>
               <button
                 className={styles.labelRequest}
@@ -133,19 +150,7 @@ const AnimalProfile = () => {
         </div>
         <div className={styles.additionalInfo}>
           <h2>Додаткова інформація</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. In dolorem
-            aspernatur eveniet vitae, fugiat quaerat dolor nostrum ipsam libero
-            expedita ad et perspiciatis perferendis itaque facilis maxime.
-            Reiciendis, quos aliquam. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Omnis ullam nemo voluptatibus. Labore
-            necessitatibus temporibus veritatis eos culpa quos sed aperiam vel
-            hic vitae amet pariatur, reprehenderit nisi dolorem libero! Lorem,
-            ipsum dolor sit amet consectetur adipisicing elit. Numquam quod
-            dicta animi minima rem! Possimus, assumenda! Itaque quo ullam quia
-            qui. Debitis ratione totam tempore assumenda voluptate placeat sunt
-            corporis.
-          </p>
+          <p>{animal.additional_information}</p>
         </div>
       </div>
       <div className={styles.profileSubPart}>
@@ -156,11 +161,12 @@ const AnimalProfile = () => {
           }`}
         >
           <div className={styles.adoptionSection}>
-            <AdoptionRequest />
+            {/* id або animal_id!!!!!!!!!!!!!!!! */}
+            <AdoptionRequest animal_id={animal.id} animal_name={animal.name} />
           </div>
         </div>
         <div className={styles.adoptionRules}>
-          <h2 className={styles.labelRules}>Правила усиновлення</h2>
+          <h2 className={styles.labelRules}>Правила адопції</h2>
           <ul className={styles.rulesList}>
             {rules.map((rule, idx) => (
               <li

@@ -17,7 +17,7 @@ function App() {
         {/* Основні маршрути з Layout */}
         <Route path="/" element={<Layouts />}>
           <Route index element={<Home />} />
-          <Route path="animal_profile" element={<AnimalProfile />} />
+          <Route path="animal/:id" element={<AnimalProfile />} />
           <Route path="about" element={<About />} />
           <Route path="animal-list" element={<AnimalList />} />
           <Route path="*" element={<h1>Not Found</h1>} />

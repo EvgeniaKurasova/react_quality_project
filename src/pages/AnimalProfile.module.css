@@ -48,6 +48,8 @@
 .sliderWithArrows {
   display: flex;
   flex-direction: row;
+  gap: 5px;
+  width: 100%;
 }
 .customNavBtn {
   /* position: absolute; */
@@ -198,12 +200,12 @@
   }
 }
 .adoptionRules {
+  max-width: calc(50% - 44px) !important;
   background: #fff;
   padding: 32px;
   border-radius: 12px;
   box-shadow: 0 6px 32px rgba(20, 71, 30, 0.1);
   border: 1.5px solid #b2cfc2;
-  max-width: 50%;
   padding-top: 60px;
   align-self: flex-start;
 }
@@ -268,7 +270,9 @@
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(50px); /* збільшили відстань для більш помітного ефекту */
+  transform: translateY(
+    50px
+  ); /* збільшили відстань для більш помітного ефекту */
   transition: all 1.4s ease-out;
 }
 

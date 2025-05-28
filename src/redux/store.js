@@ -1,14 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit'
-import authReducer from './authSlice'
 import { animalApi } from './animalApi'
+import { adoptionRequestApi } from './adoptionRequestApi'
+import authReducer from './authSlice'
 
 // export const store = configureStore({
-  const store = configureStore({
+const store = configureStore({
   reducer: {
-    auth: authReducer,
     [animalApi.reducerPath]: animalApi.reducer,
+    [adoptionRequestApi.reducerPath]: adoptionRequestApi.reducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(animalApi.middleware),
+    getDefaultMiddleware().concat(
+      animalApi.middleware,
+      adoptionRequestApi.middleware
+    ),
 })
 export default store

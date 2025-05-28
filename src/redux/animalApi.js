@@ -22,6 +22,11 @@ export const animalApi = createApi({
       providesTags: ['Animals'],
     }),
 
+    getAnimalById: builder.query({
+      query: (id) => `animals/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Animals', id }],
+    }),
+
     // Додаємо новий endpoint для POST-запиту
     addAnimal: builder.mutation({
       query: (newAnimal) => ({
@@ -34,4 +39,8 @@ export const animalApi = createApi({
   }),
 })
 
-export const { useGetAnimalsQuery, useAddAnimalMutation } = animalApi
+export const {
+  useGetAnimalsQuery,
+  useGetAnimalByIdQuery,
+  useAddAnimalMutation,
+} = animalApi
