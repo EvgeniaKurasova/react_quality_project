@@ -16,10 +16,12 @@ export default function AddAnimal() {
     age_months: '',
     size: '',
     size_en: '',
-    isSterilizet: '',
-    description: '',
-    description_en: '',
-    ag_updated_at: '',
+    is_sterilized: '',
+    additional_information: '',
+    additional_information_en: '',
+    age_updated_at: '',
+    photos: [],
+    photos_data: [],
   })
 
   const handleChange = (e) => {
@@ -30,12 +32,86 @@ export default function AddAnimal() {
     }))
   }
 
+  const handleMainPhotoChange = (e) => {
+    if (e.target.files[0]) {
+      const file = e.target.files[0]
+      setAnimal((prev) => {
+        const mainPhotoIndex = prev.photos_data.findIndex(
+          (photo) => photo.is_main
+        )
+
+        if (mainPhotoIndex !== -1) {
+          const newPhotos = [...prev.photos]
+          const newPhotosData = [...prev.photos_data]
+          newPhotos[mainPhotoIndex] = file
+          return {
+            ...prev,
+            photos: newPhotos,
+            photos_data: newPhotosData,
+          }
+        }
+
+        return {
+          ...prev,
+          photos: [...prev.photos, file],
+          photos_data: [...prev.photos_data, { is_main: true }],
+        }
+      })
+    }
+  }
+
+  const handleAdditionalPhotosChange = (e) => {
+    if (e.target.files.length > 0) {
+      const files = Array.from(e.target.files)
+      setAnimal((prev) => ({
+        ...prev,
+        photos: [...prev.photos, ...files],
+        photos_data: [
+          ...prev.photos_data,
+          ...files.map(() => ({ is_main: false })),
+        ],
+      }))
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await addAnimal(animal).unwrap()
+      if (animal.photos.length !== animal.photos_data.length) {
+        alert('Кількість фото і описів фото не співпадає!')
+        return
+      }
+
+      const oversize = animal.photos.some(
+        (photo) => photo.size > 2 * 1024 * 1024
+      )
+      if (oversize) {
+        alert('Розмір кожного фото не повинен перевищувати 2MB!')
+        return
+      }
+
+      const formData = new FormData()
+
+      Object.keys(animal).forEach((key) => {
+        if (key !== 'photos' && key !== 'photos_data' && key !== 'gender') {
+          formData.append(key, animal[key])
+        }
+      })
+
+      formData.append('gender', animal.gender === 'true')
+
+      if (animal.photos.length > 0) {
+        animal.photos.forEach((photo, index) => {
+          formData.append('photos', photo)
+          formData.append(
+            `photos_data[${index}][is_main]`,
+            animal.photos_data[index].is_main
+          )
+        })
+      }
+
+      await addAnimal(formData).unwrap()
       alert('✅ Тварину додано успішно!')
-      // очищення форми, якщо потрібно:
       setAnimal({
         name: '',
         name_en: '',
@@ -46,10 +122,12 @@ export default function AddAnimal() {
         age_months: '',
         size: '',
         size_en: '',
-        isSterilizet: '',
-        description: '',
-        description_en: '',
-        ag_updated_at: '',
+        is_sterilized: '',
+        additional_information: '',
+        additional_information_en: '',
+        age_updated_at: '',
+        photos: [],
+        photos_data: [],
       })
     } catch (err) {
       console.error('❌ Помилка при додаванні тварини:', err)
@@ -69,7 +147,7 @@ export default function AddAnimal() {
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>
           <div className={styles.inputGroup}>
-            <label htmlFor="name_ua">Ім'я*</label>
+            <label htmlFor="name">Ім'я*</label>
             <input
               type="text"
               id="name"
@@ -112,6 +190,7 @@ export default function AddAnimal() {
               name="type_en"
               value={animal.type_en}
               onChange={handleChange}
+              required
             />
           </div>
         </div>
@@ -123,10 +202,12 @@ export default function AddAnimal() {
               <label className={styles.radioLabel}>
                 <input
                   type="radio"
-                  name="sex"
-                  value="Чоловіча"
-                  checked={animal.sex === 'Чоловіча'}
-                  onChange={handleChange}
+                  name="gender"
+                  value="true"
+                  checked={animal.gender === 'true'}
+                  onChange={(e) =>
+                    setAnimal((prev) => ({ ...prev, gender: e.target.value }))
+                  }
                   required
                 />
                 Чоловіча
@@ -134,10 +215,12 @@ export default function AddAnimal() {
               <label className={styles.radioLabel}>
                 <input
                   type="radio"
-                  name="sex"
-                  value="Жіноча"
-                  checked={animal.sex === 'Жіноча'}
-                  onChange={handleChange}
+                  name="gender"
+                  value="false"
+                  checked={animal.gender === 'false'}
+                  onChange={(e) =>
+                    setAnimal((prev) => ({ ...prev, gender: e.target.value }))
+                  }
                   required
                 />
                 Жіноча
@@ -155,6 +238,7 @@ export default function AddAnimal() {
               name="age_years"
               value={animal.age_years}
               onChange={handleChange}
+              min="0"
               required
             />
           </div>
@@ -162,10 +246,12 @@ export default function AddAnimal() {
             <label htmlFor="age_mounth">Кількість місяців*</label>
             <input
               type="number"
-              id="age_mounth"
-              name="age_mounth"
-              value={animal.age_mounth}
+              id="age_months"
+              name="age_months"
+              value={animal.age_months}
               onChange={handleChange}
+              min="0"
+              max="11"
               required
             />
           </div>
@@ -201,9 +287,9 @@ export default function AddAnimal() {
               <label className={styles.radioLabel}>
                 <input
                   type="radio"
-                  name="isSterilizet"
+                  name="is_sterilized"
                   value="Так"
-                  checked={animal.isSterilizet === 'Так'}
+                  checked={animal.is_sterilized === 'Так'}
                   onChange={handleChange}
                 />
                 Так
@@ -211,9 +297,9 @@ export default function AddAnimal() {
               <label className={styles.radioLabel}>
                 <input
                   type="radio"
-                  name="isSterilizet"
+                  name="is_sterilized"
                   value="Ні"
-                  checked={animal.isSterilizet === 'Ні'}
+                  checked={animal.is_sterilized === 'Ні'}
                   onChange={handleChange}
                 />
                 Ні
@@ -224,32 +310,56 @@ export default function AddAnimal() {
 
         <div className={styles.formGroup}>
           <div className={styles.inputGroup}>
-            <label htmlFor="description">Опис</label>
+            <label htmlFor="additional_information">Додаткова інформація</label>
             <textarea
-              id="description"
-              name="description"
-              value={animal.description}
+              id="additional_information"
+              name="additional_information"
+              value={animal.additional_information}
               onChange={handleChange}
-              rows={4}
             />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="description_en">Description</label>
+            <label htmlFor="additional_information_en">
+              Додаткова інформація
+            </label>
             <textarea
-              id="description_en"
-              name="description_en"
-              value={animal.description_en}
+              id="additional_information_en"
+              name="additional_information_en"
+              value={animal.additional_information_en}
               onChange={handleChange}
-              rows={4}
             />
           </div>
         </div>
 
-        <button
-          type="submit"
-          className={styles.submitButton}
-          onClick={handleSubmit}
-        >
+        <div className={styles.formGroup}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="mainPhoto">Головне фото (фото профілю)*</label>
+            <input
+              type="file"
+              id="mainPhoto"
+              name="mainPhoto"
+              accept="image/jpeg,image/png,image/jpg,image/gif"
+              onChange={handleMainPhotoChange}
+              required
+            />
+          </div>
+        </div>
+
+        <div className={styles.formGroup}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="additionalPhotos">Додаткові фото</label>
+            <input
+              type="file"
+              id="additionalPhotos"
+              name="additionalPhotos"
+              multiple
+              accept="image/jpeg,image/png,image/jpg,image/gif"
+              onChange={handleAdditionalPhotosChange}
+            />
+          </div>
+        </div>
+
+        <button type="submit" className={styles.submitButton}>
           Зберегти
         </button>
       </form>

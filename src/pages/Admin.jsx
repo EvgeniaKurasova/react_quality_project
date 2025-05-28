@@ -9,11 +9,14 @@ import '../styles/pages.css'
 import AddAnimal from '../components/admin/AddAnimal'
 import { useNavigate } from 'react-router-dom'
 import styles from './Admin.module.css'
+import { useDispatch } from 'react-redux'
+import { logout } from '../redux/authSlice'
 
 const Admin = () => {
   const [animals, setAnimals] = useState([])
   const [requests, setRequests] = useState([])
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleEditAnimal = (id) => {
     console.log('Edit animal:', id)
@@ -23,8 +26,35 @@ const Admin = () => {
     console.log('Delete animal:', id)
   }
 
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate('/login')
+  }
+
   return (
     <div className="admin-page">
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          padding: '16px 0',
+        }}
+      >
+        <button
+          onClick={handleLogout}
+          style={{
+            background: '#e74c3c',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 4,
+            padding: '8px 16px',
+            cursor: 'pointer',
+            fontWeight: 600,
+          }}
+        >
+          Вийти
+        </button>
+      </div>
       <Routes>
         <Route index element={<AdminHome />} />
         <Route
@@ -44,9 +74,9 @@ const Admin = () => {
                 </button>
               </div>
               <AnimalsTable
-                // animals={animals}
-                // editAnimalRecord={handleEditAnimal}
-                // deleteAnimalRecord={handleDeleteAnimal}
+              // animals={animals}
+              // editAnimalRecord={handleEditAnimal}
+              // deleteAnimalRecord={handleDeleteAnimal}
               />
             </div>
           }

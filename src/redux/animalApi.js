@@ -5,6 +5,16 @@ export const animalApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://127.0.0.1:8000/api',
     tagTypes: ['Animals'],
+    // додаємо токен до всіх запитів RTK query
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token
+      console.log('TOKEN IN HEADER:', token)
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`)
+      }
+      return headers
+    },
+    // lодаємо токен до всіх запитів RTK query/>
   }), // заміни на свій URL
   endpoints: (builder) => ({
     getAnimals: builder.query({

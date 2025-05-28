@@ -3,7 +3,9 @@ import styles from './AnimalCards.module.css'
 import AnimalCard from './AnimalCard'
 
 const AnimalCards = () => {
-  const { data: animals, isLoading, error } = useGetAnimalsQuery()
+  const { data: animalsResponse, isLoading, error } = useGetAnimalsQuery()
+
+  const animals = animalsResponse?.data || []
 
   if (isLoading) {
     return <div className={styles.loading}>Завантаження...</div>
@@ -13,7 +15,7 @@ const AnimalCards = () => {
     return <div className={styles.error}>Помилка завантаження даних</div>
   }
 
-  if (!animals || animals.length === 0) {
+  if (animals.length === 0) {
     return <div className={styles.noData}>Немає доступних тварин</div>
   }
 

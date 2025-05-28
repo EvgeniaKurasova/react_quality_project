@@ -22,7 +22,7 @@ const AnimalCard = ({ animal }) => {
         <div className={styles.postDesc}>
           <span>{animal.gender}</span>
           <span>{animal.age}</span>
-        </div>
+        </div>''
         <NavLink to={`/animal/${animal.id}`}>
           <button className={styles.postButton}>Переглянути профіль</button>
         </NavLink>
