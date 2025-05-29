@@ -4,7 +4,7 @@ export const animalApi = createApi({
   reducerPath: 'animalApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://127.0.0.1:8000/api',
-    tagTypes: ['Animals'],
+    tagTypes: ['Animal'],
     // додаємо токен до всіх запитів RTK query
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token
@@ -15,16 +15,30 @@ export const animalApi = createApi({
       return headers
     },
     // lодаємо токен до всіх запитів RTK query/>
-  }), // заміни на свій URL
+  }),
   endpoints: (builder) => ({
     getAnimals: builder.query({
-      query: () => 'animals',
-      providesTags: ['Animals'],
+      query: () => 'animals/',
+      providesTags: ['Animal'],
     }),
 
     getAnimalById: builder.query({
-      query: (id) => `animals/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Animals', id }],
+      query: (id) => `animals/${id}/`,
+      providesTags: ['Animal'],
+    }),
+
+    getFilteredAnimals: builder.query({
+      query: (filters = {}) => ({
+        url: 'animals/',
+        method: 'GET',
+        params: {
+          type: filters.type || undefined,
+          gender: filters.gender || undefined,
+          size: filters.size?.length ? filters.size.join(',') : undefined,
+          age: filters.age?.length ? filters.age.join(',') : undefined,
+        },
+      }),
+      providesTags: ['Animal'],
     }),
 
     // Додаємо новий endpoint для POST-запиту
@@ -34,7 +48,16 @@ export const animalApi = createApi({
         method: 'POST',
         body: newAnimal,
       }),
-      invalidatesTags: ['Animals'], // Автоматично оновить список
+      invalidatesTags: ['Animal'], // Автоматично оновить список
+    }),
+
+    createAdoptionRequest: builder.mutation({
+      query: (data) => ({
+        url: 'adoption-requests/',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Animal'],
     }),
   }),
 })
@@ -42,5 +65,7 @@ export const animalApi = createApi({
 export const {
   useGetAnimalsQuery,
   useGetAnimalByIdQuery,
+  useGetFilteredAnimalsQuery,
   useAddAnimalMutation,
+  useCreateAdoptionRequestMutation,
 } = animalApi

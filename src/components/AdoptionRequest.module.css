@@ -13,8 +13,6 @@ textarea {
   border-radius: 4px;
   font-size: 14px;
   transition: border-color 0.2s;
-  margin-bottom: 12px;
-  margin-top: 4px;
 }
 
 input:focus,
@@ -25,7 +23,7 @@ textarea:focus {
 
 textarea {
   min-height: 100px;
-  max-width: 462px;
+  max-width: 100%;
   /* resize: vertical; */
   font-family: inherit;
   resize: vertical;

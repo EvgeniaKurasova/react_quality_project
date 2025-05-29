@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { animalApi } from './animalApi'
 import { adoptionRequestApi } from './adoptionRequestApi'
 import authReducer from './authSlice'
+import filterReducer from './filterSlice'
 
 // export const store = configureStore({
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     [animalApi.reducerPath]: animalApi.reducer,
     [adoptionRequestApi.reducerPath]: adoptionRequestApi.reducer,
     auth: authReducer,
+    filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

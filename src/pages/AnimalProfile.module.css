@@ -153,6 +153,7 @@
 
 /* Стилі для секції усиновлення */
 .adoptionSection {
+  max-width: calc(100%);
   background: #fff;
   padding: 32px;
   border-radius: 12px;
@@ -200,7 +201,8 @@
   }
 }
 .adoptionRules {
-  max-width: calc(50% - 44px) !important;
+  /* max-width: calc(50% - 44px) !important; */
+  max-width: calc(50% - 44px);
   background: #fff;
   padding: 32px;
   border-radius: 12px;
