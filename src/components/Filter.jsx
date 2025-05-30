@@ -109,14 +109,6 @@ const Filter = () => {
 
   return (
     <div>
-      <style>{`
-        select:disabled, button:disabled, input:disabled {
-          background: #e0e0e0 !important;
-          color: #aaa !important;
-          cursor: not-allowed !important;
-          opacity: 0.7;
-        }
-      `}</style>
       <div className={styles.filterCollapsed}>
         <h2>Знайти друга</h2>
         <div className={styles.filterTitle} onClick={handleToggleFilter}>

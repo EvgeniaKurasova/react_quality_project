@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div className={styles.footerSection}>
-          <h3 className={styles.logo}>Animal Shelter</h3>
+          <h4 className={styles.logo}>Animal Shelter</h4>
           <p className={styles.description}>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et
             consectetur, veniam distinctio architecto assumenda minima provident
@@ -18,19 +18,25 @@ const Footer = () => {
         <div className={styles.footerSection}>
           <h4>Навігація</h4>
           <nav className={styles.footerNav}>
-            <NavLink to="." end>
+            <NavLink className={styles.footerItem} to="." end>
               Home
             </NavLink>
-            <NavLink to="/about">Про нас</NavLink>
-            <NavLink to="/animal-list">Обрати друга!!!!!!!!!!!!!!!!!!</NavLink>
+            <NavLink className={styles.footerItem} to="/about">
+              Про нас
+            </NavLink>
+            <NavLink className={styles.footerItem} to="/animal-list">
+              Обрати друга!!!!!!!!!!!!!!!!!!
+            </NavLink>
           </nav>
         </div>
 
         <div className={styles.footerSection}>
           <h4>Контакти</h4>
           <div className={styles.contactInfo}>
-            <p>Email: info@animalshelter.com!</p>
-            <p>Телефон: +380 44 123 4567!</p>
+            <div className={styles.footerItem}>
+              Email: info@animalshelter.com!
+            </div>
+            <div className={styles.footerItem}>Телефон: +380 44 123 4567!</div>
           </div>
         </div>
 

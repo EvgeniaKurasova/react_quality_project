@@ -2,12 +2,13 @@
   text-align: center;
 }
 button {
-  padding: 15px;
-  font-size: 30px;
-  border-radius: 5px;
-  margin: 20px;
   border: 0px;
+  /* padding: 15px; */
+  font-family: 'Georgia', sans-serif;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0px;
 }
 
 /* 
@@ -43,7 +44,7 @@ button {
 body {
   font-family: 'Arial', sans-serif; /* Основний шрифт для тексту */
   font-size: 16px; /* Розмір основного шрифта */
-  line-height: 1.5; /* Міжрядковий інтервал */
+  line-height: 1.5;
   margin: 0;
   padding: 0;
   /* color: #333;
@@ -52,16 +53,17 @@ body {
 }
 h1 {
   font-family: 'Georgia', serif;
-  font-size: 40px;
-  font-weight: bold;
-  color: #222;
-  /* margin: 0 0 20px 0; */
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #111;
+  margin: 0;
   line-height: 1.2;
 }
 h2 {
   font-family: 'Georgia', serif;
   font-weight: bold;
-  color: #333;
+  color: #222;
   /* margin: 0 0 15px 0; */
   line-height: 1.3;
 }
@@ -81,19 +83,20 @@ h4 {
   /* margin: 0 0 10px 0; */
   line-height: 1.5;
 }
+.text {
+  font-family: 'Georgia', serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: #0d3f35;
+  /* margin: 0 0 10px 0; */
+  line-height: 1.2;
+}
 p {
   font-size: 16px;
   line-height: 1.6; /* Міжрядковий інтервал */
   margin: 15px 0 0 0; /* Відступи між абзацами */
-  color: #666; /* Колір тексту */
+  color: #555; /* Колір тексту */
   font-weight: normal;
-}
-button {
-  font-family: 'Georgia', sans-serif;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin: 0px; /* Анімація на hover */
 }
 
 button:active {
@@ -103,6 +106,11 @@ button:active {
 button:disabled {
   background-color: #ccc; /* Колір фону для вимкнених кнопок */
   cursor: not-allowed;
+  background: #e0e0e0 !important;
+  /* color: #aaa !important; */
+  color: #999 !important;
+  cursor: not-allowed;
+  opacity: 0.8;
 }
 
 .active {
@@ -115,7 +123,6 @@ button:disabled {
   /* background: #b2cfc2 !important; */
   opacity: 0.9;
   background-color: #095145 !important;
-
 }
 
 .swiper-pagination-bullet-active {
@@ -124,6 +131,6 @@ button:disabled {
   background-color: #333 !important;
   opacity: 1;
 }
-.swiper-button-lock{
+.swiper-button-lock {
   display: flex !important;
 }

@@ -53,7 +53,7 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.mainPart}>
-        <h1 className={styles.title}>EDWAKPRESETS // STORE</h1>
+        <h1>EDWAKPRESETS // STORE</h1>
         <div className={styles.subtitle}>High Quality Lightroom Presets</div>
       </div>
       <div>
