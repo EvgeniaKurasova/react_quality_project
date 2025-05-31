@@ -1,37 +1,4 @@
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  background-color: white;
-  padding: 30px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 40px;
-  gap: 20px;
-  justify-content: space-between;
-}
-.header h1 {
-  margin: 0;
-}
-.backButton {
-  padding: 8px 16px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: #666;
-  text-decoration: none;
-}
-.backButton:hover {
-  color: #333;
-}
-/* Якщо в групі лише одне поле — одна колонка */
-.formGroup:has(> :only-child) {
-  grid-template-columns: 1fr;
-}
-.addContainer {
+.editContainer {
   background: white;
   border-radius: 8px;
   box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13);
@@ -39,6 +6,7 @@
   font-family: 'Georgia', 'Inter', 'Segoe UI', Arial, sans-serif;
   margin: 40px auto;
 }
+
 .title {
   color: #222;
   font-size: 24px;
@@ -46,75 +14,108 @@
   font-weight: 600;
   text-align: center;
 }
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
+
 .formFields {
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 0px 16px;
 }
+/* .formFields::-webkit-scrollbar {
+  width: 8px;
+}
+.formFields::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+.formFields::-webkit-scrollbar-thumb {
+  background: #b2cfc2;
+  border-radius: 4px;
+}
+.formFields::-webkit-scrollbar-thumb:hover {
+  background: #14471e;
+} */
 .formGroups {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 18px;
 }
-.inputGroup input,
-.inputGroup textarea {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  font-family: inherit;
-}
-.inputGroup {
+.formGroup {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
-.inputGroup label {
-  font-weight: 500;
-  color: #333;
+
+.formGroup label {
+  font-weight: 600;
+  /* color: #0d3f35; */
+  color: #222;
+  font-size: 14px;
 }
-.inputGroup input:focus,
-.inputGroup textarea:focus {
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 8px 12px;
+  border: 1px solid #b2cfc2;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  width: 100%;
+  background: white;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
   outline: none;
-  border-color: #4caf50;
+  border-color: #14471e;
+  box-shadow: 0 0 0 2px rgba(20, 71, 30, 0.1);
 }
+
 .radioGroup {
   display: flex;
   gap: 24px;
-  padding: 8px 0;
   margin-top: 4px;
 }
+
 .radioLabel {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  color: #333;
   font-weight: normal;
 }
+
 .radioLabel input[type='radio'] {
   width: auto;
   margin: 0;
   cursor: pointer;
-  accent-color: #4caf50;
 }
+
 .radioLabel span {
   font-size: 14px;
   color: #0d3f35;
 }
+
 .photoUploadSection {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
+
 .uploadButton {
   padding: 8px 16px;
   background: #f8f9fa;
@@ -126,16 +127,19 @@
   transition: all 0.3s ease;
   width: fit-content;
 }
+
 .uploadButton:hover {
   background: #e6f2ef;
   border-color: #14471e;
 }
+
 .photoPreviews {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 8px;
 }
+
 .photoPreview {
   position: relative;
   width: 120px;
@@ -144,11 +148,13 @@
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .photoImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .deletePhotoButton {
   position: absolute;
   top: 4px;
@@ -166,26 +172,49 @@
   justify-content: center;
   transition: all 0.3s ease;
 }
+
 .deletePhotoButton:hover {
   background: #dc3545;
-  color: #fff;
+  color: white;
 }
-.submitButton {
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e6f2ef;
+}
+
+.saveButton,
+.cancelButton {
   padding: 12px 36px;
   border: none;
   font-family: inherit;
   font-weight: 600;
   transition: all 0.3s ease;
   min-width: 120px;
+  /* padding: 0.75rem 1.5rem; */
   font-size: 1rem;
   border-radius: 24px;
   text-align: center;
-  align-self: flex-end;
 }
-.submitButton {
+
+.saveButton {
   background: #2ecc71;
   color: #fff;
 }
-.submitButton:hover {
+
+.saveButton:hover {
   background: #27ae60;
+}
+
+.cancelButton {
+  background: #e0e0e0;
+  color: #666;
+}
+
+.cancelButton:hover {
+  background: #d0d0d0;
 }

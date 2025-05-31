@@ -1,8 +1,9 @@
 import Filter from '../components/Filter'
 import styles from './Home.module.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useGetAnimalsQuery } from '../redux/animalApi'
 import AnimalCards from '../components/AnimalCards'
+import { useEffect } from 'react'
 
 const posts = [
   {
@@ -50,6 +51,19 @@ const posts = [
 ]
 
 const Home = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.scrollToAnimalCards) {
+      const animalCardsSection = document.getElementById('animal-cards')
+      if (animalCardsSection) {
+        animalCardsSection.scrollIntoView({ behavior: 'smooth' })
+      }
+      // Очищаємо стан після скролу
+      window.history.replaceState({}, document.title)
+    }
+  }, [location])
+
   return (
     <div className={styles.container}>
       <div className={styles.mainPart}>
@@ -59,7 +73,9 @@ const Home = () => {
       <div>
         <Filter />
       </div>
-      <AnimalCards />
+      <section id="animal-cards">
+        <AnimalCards />
+      </section>
       {/* <div className={styles.postsGrid}>
         {posts.map((post) => (
           <div className={styles.postCard} key={post.id}>

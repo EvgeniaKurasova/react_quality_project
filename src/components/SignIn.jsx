@@ -6,7 +6,7 @@ const SignIn = ({ switchTo }) => (
       <input type="email" placeholder="Email" required />
       <input type="password" placeholder="Password" required />
       <button className={styles.forgotPasswordButton} type="submit">Sign In</button>
-      <p>Don't have an account? <button onClick={() => switchTo('signUp')}>Sign Up</button></p>
+      <p className={styles.subText}>Don't have an account? <button onClick={() => switchTo('signUp')}>Sign Up</button></p>
       <button className={styles.forgotPasswordClick} onClick={() => switchTo('forgot')}>Forgot Password?</button>
     </form>
   );

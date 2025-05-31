@@ -1,0 +1,169 @@
+.rulesContainer {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13);
+  padding: 24px;
+  font-family: 'Georgia', 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.rulesList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.ruleRow {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 24px;
+  padding: 16px;
+  border: 1px solid #e6f2ef;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.ruleContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ruleField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ruleField label {
+  font-weight: 600;
+  color: #222;
+  font-size: 14px;
+}
+
+.ruleField textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  border: 1px solid #b2cfc2;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.ruleField textarea:focus {
+  outline: none;
+  border-color: #14471e;
+  box-shadow: 0 0 0 2px rgba(20, 71, 30, 0.1);
+}
+
+.ruleText {
+  padding: 8px;
+  background: white;
+  border: 1px solid #e6f2ef;
+  border-radius: 4px;
+  min-height: 80px;
+  white-space: pre-wrap;
+  color: #222;
+}
+
+.ruleActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.newRuleSection {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 2px solid #e6f2ef;
+}
+
+.newRuleSection h3 {
+  margin: 0 0 16px 0;
+  color: #14471e;
+  font-size: 18px;
+}
+
+.newRuleForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #f9f9f9;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  justify-content: flex-end;
+}
+.editButton {
+  background: #f9a66c;
+}
+.editButton:hover {
+  background: #fbbd8b;
+}
+.saveButton {
+  background: #2ecc71;
+}
+.saveButton:hover {
+  background: #27ae60;
+}
+.cancelButton {
+  background: #e0e0e0;
+  color: #666;
+}
+.cancelButton:hover {
+  background: #d0d0d0;
+}
+.deleteButton {
+  background: #ff4d4f;
+}
+.deleteButton:hover {
+  background: #ff7875;
+}
+.addButton {
+  background: #2ecc71;
+  align-self: flex-start;
+}
+.addButton:hover {
+  background: #27ae60;
+}
+.editButton,
+.deleteButton,
+.addButton,
+.saveButton,
+.cancelButton {
+  font-weight: 600;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px 0 rgba(20, 71, 30, 0.04);
+  border: none;
+}
+.editButton,
+.deleteButton,
+.addButton,
+.saveButton {
+  color: #fff;
+}
+.editButton,
+.deleteButton {
+  padding: 8px;
+  border-radius: 40px;
+  font-size: 14px;
+  width: 122px;
+}
+.addButton,
+.saveButton,
+.cancelButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border-radius: 24px;
+  text-align: center;
+}

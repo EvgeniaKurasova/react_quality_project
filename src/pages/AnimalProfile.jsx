@@ -123,7 +123,7 @@ const AnimalProfile = () => {
           </div>
           <div className={styles.animalInfo}>
             <div className={styles.animalDetails}>
-              <h1 className={styles.animalName}>{animal.name}</h1>
+              <h1 className={styles.animalName}>{animal.name}Ім'я</h1>
               <ul className={styles.detailsList}>
                 {/* переробити вік!!!!!!!!!!!!!!!!!! */}
                 <li>Стать: {animal.gender ? 'Хлопчик' : 'Дівчинка'}</li>
@@ -143,7 +143,7 @@ const AnimalProfile = () => {
                   setTimeout(scrollToForm, 300)
                 }}
               >
-                Усиновити
+                Подарувати родину
               </button>
             </div>
           </div>

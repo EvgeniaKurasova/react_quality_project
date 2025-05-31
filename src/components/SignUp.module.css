@@ -80,3 +80,9 @@
 .forgotPasswordClick:hover {
   text-decoration: underline;
 }
+.subText{
+  color: #888;
+align-self: center;
+margin-bottom: 4px;
+margin-top: 18px;
+}

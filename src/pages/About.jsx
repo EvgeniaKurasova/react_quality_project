@@ -10,6 +10,7 @@ const About = () => {
       <SignInForm />
       <SignUp />
       <ForgotPassword />
+      
     </div>
   )
 }

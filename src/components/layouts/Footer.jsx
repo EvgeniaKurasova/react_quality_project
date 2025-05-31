@@ -1,8 +1,24 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import styles from './Footer.module.css'
 
 const Footer = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const handleChooseFriend = (e) => {
+    e.preventDefault()
+
+    if (location.pathname === '/') {
+      const animalCardsSection = document.getElementById('animal-cards')
+      if (animalCardsSection) {
+        animalCardsSection.scrollIntoView({ behavior: 'smooth' })
+      }
+    } else {
+      navigate('/', { state: { scrollToAnimalCards: true } })
+    }
+  }
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
@@ -24,8 +40,12 @@ const Footer = () => {
             <NavLink className={styles.footerItem} to="/about">
               Про нас
             </NavLink>
-            <NavLink className={styles.footerItem} to="/animal-list">
-              Обрати друга!!!!!!!!!!!!!!!!!!
+            <NavLink
+              to="/"
+              className={styles.footerItem}
+              onClick={handleChooseFriend}
+            >
+              Знайти друга
             </NavLink>
           </nav>
         </div>

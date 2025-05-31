@@ -1,9 +1,8 @@
-/* Заголовок для секції правил усиновлення */
 .adoptionRulesTitle {
-  margin: 32px 0 12px 0;
-  font-size: 20px;
-  color: #14471e;
   font-weight: 600;
+  margin: 32px 0 12px 0;
+  font-size: 1.2rem;
+  color: #333;
 }
 /* Контейнер для всіх таблиць на сторінці */
 .tablesContainer {
@@ -15,13 +14,6 @@
   flex-direction: column;
   gap: 40px;
   padding: 1rem;
-}
-/* Контейнер для основної таблиці */
-.mainTableContainer {
-  overflow-x: auto;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 /* Контейнер для таблиці правил (як у adoptionRequestTable) */
 .tableContainer {
@@ -42,9 +34,7 @@
   background: #fff;
   font-family: inherit;
 }
-.shelterTable{
-  min-width: 1000px; /* впливає на прокрутку */
-}
+
 /* Хедер таблиці */
 .table thead {
   background: #e6f2ef;
@@ -75,11 +65,6 @@
 .table tr:hover td {
   background: #f9a66c22;
   transition: background 0.2s;
-}
-.adoptionRulesTitle {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #333;
 }
 /* Стиль для повідомлення "Немає записів" */
 .noData,
@@ -166,57 +151,169 @@
   flex-direction: column;
 }
 .editButton,
-.deleteButton {
-  padding: 8px;
-  border: none;
-  border-radius: 40px;
-  font-size: 14px;
-  font-family: inherit;
+.addEditRulesButton,
+.addButton,
+.editRulesButton,
+.deleteButton,
+.saveButton,
+.cancelButton {
   font-weight: 600;
-  cursor: pointer;
+  font-family: inherit;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px 0 rgba(20, 71, 30, 0.04);
-  width: 122px;
+  border: none;
+}
+.editButton,
+.addEditRulesButton,
+.addButton,
+.editRulesButton,
+.deleteButton,
+.saveButton,
+.cancelButton {
   color: #fff;
 }
-.editButton {
+.editRulesButton,
+.deleteButton {
+  padding: 8px;
+  border-radius: 40px;
+  font-size: 14px;
+  width: 122px;
+}
+.addEditRulesButton {
+  background: #f9a66c;
+}
+.addEditRulesButton:hover {
+  background: #fbbd8b;
+}
+.editRulesButton {
   background: #f9a66c;
   margin-bottom: 6px;
 }
-.editButton:hover {
+.editRulesButton:hover {
   background: #fbbd8b;
 }
 .deleteButton {
   background: #ff4d4f;
-  /* background: #d9363e;
-  background: #ff4d4f; */
-}
-.deleteButton:hover {
-  background: #d9363e;
 }
 .deleteButton:hover {
   background-color: #ff7875;
 }
+.addRulesButton:hover {
+  background-color: #219a52;
+}
 .addButton {
-  background-color: #28a745;
-  padding: 8px 18px;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px 0 rgba(20, 71, 30, 0.04);
-  /* background: #2ecc71; */
-  color: #fff;
+  background-color:#45a049;
 }
 .addButton:hover {
-  /* background: #27ae60; */
-  background-color: #218838;
+  background-color: #219a52;
 }
-/* background-color: #dc3545; */
-/* background-color: #c82333; */
-/* background-color: #007bff; */
-/* background-color: #0056b3; */
-/* background-color: #1a5a26; */
+.actionButtons {
+  display: flex;
+  gap: 18px;
+  margin-top: 24px;
+  justify-content: flex-start;
+  grid-column: 1 / -1;
+}
+.addButton,
+.addEditRulesButton,
+.editButton,
+.saveButton,
+.cancelButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border-radius: 24px;
+  text-align: center;
+}
+.editButton {
+  background: #f9a66c;
+}
+.editButton:hover {
+  background: #fbbd8b;
+}
+.saveButton {
+  background-color:#45a049;
+  /* background: #2ecc71; */
+}
+.saveButton:hover {
+  background-color: #219a52;
+}
+.cancelButton {
+  background: #e0e0e0;
+  color: #666;
+  cursor: not-allowed;
+}
+/* background: #2ecc71;
+background-color: #28a745;
+background: #d9363e;
+background: #d9363e;
+background: #ff4d4f;
+background: #27ae60;
+background-color: #218838;
+background: #ff7875;
+background: #ff4d4f;
+background: #ff4d4f;
+background: #ff7875;
+background-color: #dc3545;
+background-color: #c82333;
+background-color: #007bff;
+background-color: #0056b3;
+background-color: #1a5a26;
+color: #0d3f35; */
+
+/* Стилі для інформаційної панелі притулку */
+.shelterInfoPanel {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  box-shadow: 0 6px 32px rgba(20, 71, 30, 0.13);
+}
+
+.infoRow {
+  display: grid;
+  grid-template-columns: 200px 1fr 120px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #e6f2ef;
+  gap: 40px;
+}
+
+.infoRow:last-child {
+  border-bottom: none;
+}
+
+.infoLabel {
+  font-weight: 600;
+  color: #222;
+}
+
+.infoValue {
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.infoValue.breakable {
+  word-break: break-all;
+}
+
+.actionCell {
+  display: flex;
+}
+.mainPhoto,
+.photo {
+  height: 118px;
+  width: auto;
+  border: 1px solid #b2cfc2;
+  box-shadow: 0 0 8px rgba(20, 71, 30, 0.2);
+  background: #f8f9fa;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.noPhoto {
+  color: #999;
+  font-size: 14px;
+  font-style: italic;
+}

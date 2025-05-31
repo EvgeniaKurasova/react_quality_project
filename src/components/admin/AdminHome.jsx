@@ -16,6 +16,7 @@ const AdminHome = () => {
     <div className={styles.content}>
       <div className={styles.header}>
         <h1>Адміністративна панель</h1>
+        <div className={styles.headerAdminButtonGroup}>
         <button
           className={styles.addButton}
           onClick={() => navigate('add-animal')}
@@ -25,6 +26,7 @@ const AdminHome = () => {
         <button className={styles.logoutButton} onClick={handleLogout}>
           Вийти
         </button>
+        </div>
       </div>
       <div className={styles.nav}>
         <button onClick={() => navigate('animals')}>Тварини</button>

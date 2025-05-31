@@ -10,7 +10,7 @@ const SignUp = ({ switchTo }) => (
     <input type="password" placeholder="Password" required />
     <input type="password" placeholder="Confirm Password" required />
     <button className={styles.forgotPasswordButton} type="submit">Sign Up</button>
-    <p>
+    <p className={styles.subText}>
       Already have an account?{' '}
       <button type="button" onClick={() => switchTo('signIn')}>
         Sign In

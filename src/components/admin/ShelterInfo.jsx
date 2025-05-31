@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './ShelterInfo.module.css'
 import ShelterInfoEditor from './ShelterInfoEditor'
+import RulesAddEdit from './RulesAddEdit'
 import {
   useGetShelterInfoQuery,
   useUpdateShelterInfoMutation,
@@ -17,8 +18,10 @@ const mockShelterData = {
   email: 'shelter@example.com',
   facebook: 'https://facebook.com/shelter',
   instagram: 'https://instagram.com/shelter',
-  description: 'Наш притулок займається допомогою безпритульним тваринам...',
-  description_en: 'Our shelter helps homeless animals...',
+  description:
+    'Наш притулок займається допомогою безпритульним тваринам...Наш притулок займається допомогою безпритульним тваринам...Наш притулок займається допомогою безпритульним тваринам...Наш притулок займається допомогою безпритульним тваринам...Наш притулок займається допомогою безпритульним тваринам...',
+  description_en:
+    'Our shelter helps homeless animals...Our shelter helps homeless animals...Our shelter helps homeless animals...Our shelter helps homeless animals...Our shelter helps homeless animals...',
   logo: 'https://example.com/logo.jpg',
   main_photo: 'https://example.com/main.jpg',
   adoption_rules:
@@ -29,6 +32,7 @@ const mockShelterData = {
 
 const ShelterInfo = () => {
   const [isEditing, setIsEditing] = useState(false)
+
   // const { data: currentShelter, isLoading, error } = useGetShelterInfoQuery()
   // const [updateShelterInfo] = useUpdateShelterInfoMutation()
   // const [deleteAdoptionRules] = useDeleteAdoptionRulesMutation()
@@ -39,6 +43,9 @@ const ShelterInfo = () => {
   // } = useGetShelterInfoQuery()
   // const [updateShelterInfo] = useUpdateShelterInfoMutation()
   // const [deleteAdoptionRules] = useDeleteAdoptionRulesMutation()
+
+  const [isEditingRules, setIsEditingRules] = useState(false)
+  const [editingField, setEditingField] = useState(null)
 
   // Використовуємо тільки мок-дані
   const currentShelter = mockShelterData
@@ -59,10 +66,26 @@ const ShelterInfo = () => {
 
     // Тут можна додати логіку для оновлення мок-даних, якщо потрібно
     setIsEditing(false)
+    setEditingField(null)
   }
 
   const handleCancel = () => {
     setIsEditing(false)
+    setEditingField(null)
+  }
+
+  const handleEditRules = () => {
+    setIsEditingRules(true)
+  }
+
+  const handleSaveRules = (updatedRules) => {
+    // Тут буде логіка збереження правил
+    console.log('Saving rules:', updatedRules)
+    setIsEditingRules(false)
+  }
+
+  const handleCancelRules = () => {
+    setIsEditingRules(false)
   }
 
   const handleDeleteRule = async () => {
@@ -72,6 +95,15 @@ const ShelterInfo = () => {
     //   console.error('Error deleting rules:', err)
     // }
     // Тут можна додати логіку для видалення правил у мок-даних, якщо потрібно
+    // Тут можна додати логіку для видалення правил у мок-даних
+  }
+
+  const handleFieldEdit = (field) => {
+    setEditingField(field)
+  }
+
+  const handleFieldDelete = (field) => {
+    // Тут можна додати логіку для видалення значення поля
   }
 
   if (error) {
@@ -95,88 +127,125 @@ const ShelterInfo = () => {
   const hasRules =
     currentShelter?.adoption_rules || currentShelter?.adoption_rules_en
 
+  // Конвертуємо правила з рядка в масив об'єктів
+  const parseRules = (rulesStr) => {
+    if (!rulesStr) return []
+    return rulesStr.split('\n').map((rule, index) => ({
+      uk: rule.trim(),
+      en: currentShelter?.adoption_rules_en?.split('\n')[index]?.trim() || '',
+    }))
+  }
+
+  const rules = parseRules(currentShelter?.adoption_rules)
+
+  const renderInfoRow = (label, value, fieldName, isImage = false) => (
+    <div className={styles.infoRow} key={fieldName}>
+      <div className={styles.infoLabel}>{label}</div>
+      <div className={styles.infoValue}>
+        {isImage ? (
+          value ? (
+            <img
+              src={value}
+              alt={label}
+              className={
+                fieldName === 'main_photo' ? styles.mainPhoto : styles.photo
+              }
+            />
+          ) : (
+            <span className={styles.noPhoto}>Немає фото</span>
+          )
+        ) : (
+          value || 'Не вказано'
+        )}
+      </div>
+      <div className={styles.actionCell}>
+        {value ? (
+          <button
+            className={styles.deleteButton}
+            onClick={() => handleFieldDelete(fieldName)}
+          >
+            Видалити
+          </button>
+        ) : (
+          <button
+            className={styles.addButton}
+            onClick={() => handleFieldEdit(fieldName)}
+          >
+            Додати
+          </button>
+        )}
+      </div>
+    </div>
+  )
+
   return (
     <div className={styles.tablesContainer}>
-      <div className={styles.mainTableContainer}>
-        <table className={`${styles.table} ${styles.shelterTable}`}>
-          <thead>
-            <tr>
-              <th>Логотип</th>
-              <th>Фото на головну сторінку</th>
-              <th>Назва</th>
-              <th>Назва англійською</th>
-              <th>Контактний номер</th>
-              <th>Пошта</th>
-              <th>Фейсбук</th>
-              <th>Інстаграм</th>
-              <th>Опис</th>
-              <th>Опис англійською</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentShelter ? (
-              <tr key={currentShelter.id || 'empty'}>
-                <td className={styles.breakable}>
-                  {currentShelter.logo || ''}
-                </td>
-                <td className={styles.breakable}>
-                  {currentShelter.main_photo || ''}
-                </td>
-                <td>{currentShelter.name || ''}</td>
-                <td>{currentShelter.name_en || ''}</td>
-                <td>{currentShelter.phone || ''}</td>
-                <td className={styles.breakable}>
-                  {currentShelter.email || ''}
-                </td>
-                <td className={styles.breakable}>
-                  {currentShelter.facebook || ''}
-                </td>
-                <td className={styles.breakable}>
-                  {currentShelter.instagram || ''}
-                </td>
-                <td>{currentShelter.description || ''}</td>
-                <td>{currentShelter.description_en || ''}</td>
-                <td>
-                  <button className={styles.editButton} onClick={handleEdit}>
-                    Редагувати
-                  </button>
-                </td>
-              </tr>
-            ) : (
-              <tr>
-                <td colSpan="11" className={styles.noData}>
-                  <div className={styles.noDataContainer}>
-                    <p>Немає даних про притулок</p>
-                    <button className={styles.addButton} onClick={handleEdit}>
-                      Додати інформацію
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+      <div className={styles.shelterInfoPanel}>
+        {renderInfoRow('Логотип', currentShelter?.logo, 'logo', true)}
+        {renderInfoRow(
+          'Фото на головну сторінку',
+          currentShelter?.main_photo,
+          'main_photo',
+          true
+        )}
+        {renderInfoRow('Назва', currentShelter?.name, 'name')}
+        {renderInfoRow('Назва англійською', currentShelter?.name_en, 'name_en')}
+        {renderInfoRow('Контактний номер', currentShelter?.phone, 'phone')}
+        {renderInfoRow('Електронна пошта', currentShelter?.email, 'email')}
+        {renderInfoRow('Фейсбук', currentShelter?.facebook, 'facebook')}
+        {renderInfoRow('Інстаграм', currentShelter?.instagram, 'instagram')}
+        {renderInfoRow('Опис', currentShelter?.description, 'description')}
+        {renderInfoRow(
+          'Опис англійською',
+          currentShelter?.description_en,
+          'description_en'
+        )}
+
+        <div className={styles.actionButtons}>
+          <button
+            className={`${styles.cancelButton} ${
+              isEditing ? styles.active : ''
+            }`}
+            onClick={handleCancel}
+            disabled={!isEditing}
+          >
+            Скасувати
+          </button>
+          <button
+            className={isEditing ? styles.saveButton : styles.editButton}
+            onClick={isEditing ? handleSave : handleEdit}
+          >
+            {isEditing ? 'Зберегти' : 'Редагувати'}
+          </button>
+        </div>
       </div>
 
       {/* Таблиця для правил усиновлення */}
       <div>
         <div className={styles.rulesHeaderRow}>
           <h3 className={styles.adoptionRulesTitle}>Правила усиновлення</h3>
-          {hasRules ? (
-            <button className={styles.addButton} onClick={handleEdit}>
-              Додати правило
+          {hasRules && !isEditingRules && (
+            <button
+              className={styles.addEditRulesButton}
+              onClick={handleEditRules}
+            >
+              Редагувати правила
             </button>
-          ) : null}
+          )}
         </div>
         <div className={styles.tableContainer}>
-          {hasRules ? (
+          {isEditingRules ? (
+            <RulesAddEdit
+              rules={rules}
+              onSave={handleSaveRules}
+              onCancel={handleCancelRules}
+            />
+          ) : hasRules ? (
             <table className={styles.table}>
               <thead>
                 <tr>
                   <th>Правила усиновлення</th>
                   <th>Adoption Rules</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -189,29 +258,13 @@ const ShelterInfo = () => {
                 >
                   <td>{currentShelter.adoption_rules || ''}</td>
                   <td>{currentShelter.adoption_rules_en || ''}</td>
-                  <td className={styles.actionCell}>
-                    <div className={styles.buttonGroup}>
-                      <button
-                        className={styles.editButton}
-                        onClick={handleEdit}
-                      >
-                        Редагувати
-                      </button>
-                      <button
-                        className={styles.deleteButton}
-                        onClick={handleDeleteRule}
-                      >
-                        Видалити
-                      </button>
-                    </div>
-                  </td>
                 </tr>
               </tbody>
             </table>
           ) : (
             <div className={styles.noRulesContainer}>
               <p className={styles.noRulesText}>Немає правил</p>
-              <button className={styles.addButton} onClick={handleEdit}>
+              <button className={styles.addButton} onClick={handleEditRules}>
                 Додати правило
               </button>
             </div>
