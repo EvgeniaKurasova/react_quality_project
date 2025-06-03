@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const animalApi = createApi({
   reducerPath: 'animalApi',
+
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://127.0.0.1:8000/api',
     tagTypes: ['Animal'],
@@ -12,6 +13,7 @@ export const animalApi = createApi({
       if (token) {
         headers.set('Authorization', `Bearer ${token}`)
       }
+      headers.set('Accept', 'application/json')
       return headers
     },
     // lодаємо токен до всіх запитів RTK query/>
@@ -29,7 +31,7 @@ export const animalApi = createApi({
 
     getFilteredAnimals: builder.query({
       query: (filters = {}) => ({
-        url: 'animals/',
+        url: 'animals',
         method: 'GET',
         params: {
           type: filters.type || undefined,
@@ -42,15 +44,24 @@ export const animalApi = createApi({
     }),
 
     // Додаємо новий endpoint для POST-запиту
+    // addAnimal: builder.mutation({
+    //   query: (newAnimal) => ({
+    //     url: 'animals',
+    //     method: 'POST',
+    //     body: newAnimal,
+    //   }),
+    //   invalidatesTags: ['Animal'], // Автоматично оновить список
+    // }),
     addAnimal: builder.mutation({
-      query: (newAnimal) => ({
-        url: 'animals',
+      query: (formData) => ({
+        url: '/animals',
         method: 'POST',
-        body: newAnimal,
+        body: formData,
       }),
-      invalidatesTags: ['Animal'], // Автоматично оновить список
+      invalidatesTags: ['Animal'],
     }),
 
+    
     createAdoptionRequest: builder.mutation({
       query: (data) => ({
         url: 'adoption-requests/',

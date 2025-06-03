@@ -19,18 +19,28 @@ export default function Login() {
     setError('') // очищаємо попередню помилку
     try {
       // Відправляємо POST-запит на бекенд через api
-      const response = await api.post('/login', {
-        email,
-        password,
-      })
+      // await api.get('/sanctum/csrf-cookie', { withCredentials: true }) // <--- ДОДАЙ ЦЕ
+
+      // await api.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {
+      //   withCredentials: true,
+      // })
+      await api.post('/login', { email, password })
+      
+      const response = await api.post(
+        '/login',
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      )
       console.log('LOGIN RESPONSE:', response.data)
-      // Отримуємо токен (і, можливо, користувача)
       const token = response.data.data.token
       const user = response.data.data.user
-      // Зберігаємо токен у Redux та localStorage
       dispatch(setCredentials({ token, user }))
-      // Переходимо на сторінку адмінки
+      localStorage.setItem('token', token)
       navigate('/admin')
+
     } catch (err) {
       // Виводимо помилку, якщо щось пішло не так
       setError(

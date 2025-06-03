@@ -164,12 +164,11 @@ export default function AddAnimal() {
           formData.append(key, animal[key])
         }
       })
-
-      formData.append('gender', animal.gender === 'true')
+      formData.append('gender', animal.gender === '1')
 
       if (animal.photos.length > 0) {
         animal.photos.forEach((photo, index) => {
-          formData.append('photos', photo)
+          formData.append('photos[]', photo)
           formData.append(
             `photos_data[${index}][is_main]`,
             animal.photos_data[index].is_main
@@ -268,7 +267,7 @@ export default function AddAnimal() {
               <label>Стать/Gender*</label>
               <div className={styles.radioGroup}>
                 <label className={styles.radioLabel}>
-                  <input
+                  {/* <input
                     type="radio"
                     name="gender"
                     value="true"
@@ -277,15 +276,35 @@ export default function AddAnimal() {
                       setAnimal((prev) => ({ ...prev, gender: e.target.value }))
                     }
                     required
+                  /> */}
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="1"
+                    checked={animal.gender === '1'}
+                    onChange={(e) =>
+                      setAnimal((prev) => ({ ...prev, gender: e.target.value }))
+                    }
+                    required
                   />
                   Чоловіча
                 </label>
                 <label className={styles.radioLabel}>
-                  <input
+                  {/* <input
                     type="radio"
                     name="gender"
                     value="false"
                     checked={animal.gender === 'false'}
+                    onChange={(e) =>
+                      setAnimal((prev) => ({ ...prev, gender: e.target.value }))
+                    }
+                    required
+                  /> */}
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="0"
+                    checked={animal.gender === '0'}
                     onChange={(e) =>
                       setAnimal((prev) => ({ ...prev, gender: e.target.value }))
                     }
@@ -299,8 +318,11 @@ export default function AddAnimal() {
               <label>Стерелізація*</label>
               <input
                 type="text"
-                value={animal.is_sterilizet}
+                id="is_sterilized"
+                name="is_sterilized"
+                value={animal.is_sterilized}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -319,7 +341,7 @@ export default function AddAnimal() {
               />
             </div>
             <div className={styles.inputGroup}>
-              <label htmlFor="age_mounth">Кількість місяців*</label>
+              <label htmlFor="age_months">Кількість місяців*</label>
               <input
                 type="number"
                 id="age_months"
