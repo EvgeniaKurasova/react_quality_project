@@ -1,16 +1,14 @@
 import ForgotPassword from '../components/ForgotPassword.jsx'
 import SignInForm from '../components/SignIn.jsx'
 import SignUp from '../components/SignUp.jsx'
-import AnimalProfile from './AnimalProfile.jsx'
+import styles from './About.module.css'
 
 const About = () => {
   return (
-    <div>
-      <AnimalProfile />
+    <div className={styles.container}>
       <SignInForm />
       <SignUp />
       <ForgotPassword />
-      
     </div>
   )
 }

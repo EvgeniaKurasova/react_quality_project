@@ -1,6 +1,6 @@
 .postCard {
   background: white;
-  border-radius: 12px;
+  border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -46,10 +46,10 @@
 }
 
 .postTitle {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 8px;
+  font-size: 32px;
+  font-weight: normal;
+  color: #222;
+  margin-bottom: 18px;
 }
 
 .postDesc {

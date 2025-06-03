@@ -1,87 +1,10 @@
 import React, { useState } from 'react'
 import styles from './AnimalsTable.module.css'
 import EditAnimalInfo from './EditAnimalInfo'
+import { useGetAnimalsQuery } from '../../redux/animalApi'
 
-const testAnimals = [
-  {
-    id: 1,
-    name: 'Барсик',
-    name_en: 'Barsik',
-    type: 'Кіт',
-    type_en: 'Cat',
-    gender: 'Чоловіча',
-    age: '2 роки',
-    size: 'Середній',
-    size_en: 'Medium',
-    isSterilizet: 'Так',
-    additional_information: 'Дуже лагідний, любить гратися.',
-    additional_information_en: 'Very affectionate, loves to play.',
-    photos: [
-      {
-        id: 101,
-        photo_path: 'https://placekitten.com/80/80',
-        is_main: true,
-      },
-      {
-        id: 102,
-        photo_path: 'https://placekitten.com/81/80',
-        is_main: false,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Рекс',
-    name_en: 'Rex',
-    type: 'Собака',
-    type_en: 'Dog',
-    gender: 'Чоловіча',
-    age: '4 роки',
-    size: 'Великий',
-    size_en: 'Large',
-    isSterilizet: 'Так',
-    additional_information: 'Охороняє двір, дружній до дітей.',
-    additional_information_en: 'Guards the yard, friendly to kids.',
-    photos: [
-      {
-        id: 201,
-        photo_path: 'https://placedog.net/80/80?id=1',
-        is_main: true,
-      },
-      {
-        id: 202,
-        photo_path: 'https://placedog.net/81/80?id=2',
-        is_main: false,
-      },
-      {
-        id: 203,
-        photo_path: 'https://placedog.net/82/80?id=3',
-        is_main: false,
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: 'Хомка',
-    name_en: 'Homka',
-    type: 'Хомʼяк',
-    type_en: 'Hamster',
-    gender: 'Жіноча',
-    age: '6 місяців',
-    size: 'Малий',
-    size_en: 'Small',
-    isSterilizet: 'Так',
-    additional_information: 'Маленька, але дуже активна.',
-    additional_information_en: 'Small but very active.',
-    photos: [],
-  },
-]
-
-const AnimalsTable = ({
-  animals = testAnimals,
-  editAnimalRecord,
-  deleteAnimalRecord,
-}) => {
+const AnimalsTable = ({ editAnimalRecord, deleteAnimalRecord }) => {
+  const { data, isLoading, error } = useGetAnimalsQuery()
   const [isEditing, setIsEditing] = useState(false)
   const [editingAnimal, setEditingAnimal] = useState(null)
 
@@ -102,15 +25,22 @@ const AnimalsTable = ({
     setEditingAnimal(null)
   }
 
-  if (isEditing) {
+  if (isLoading) {
+    return <div className={styles.noData}>Завантаження...</div>
+  }
+  // <EditAnimalInfo
+  // animal={editingAnimal}
+  // onSave={handleSave}
+  // onCancel={handleCancel}
+  if (error) {
     return (
-      <EditAnimalInfo
-        animal={editingAnimal}
-        onSave={handleSave}
-        onCancel={handleCancel}
-      />
+      <div className={styles.noData}>
+        Сталася помилка при завантаженні тварин
+      </div>
     )
   }
+
+  const animals = data?.data || []
 
   if (!animals || animals.length === 0) {
     return <div className={styles.noData}>Немає записів</div>
@@ -153,19 +83,47 @@ const AnimalsTable = ({
               const mainPhoto = (animal.photos || []).find(
                 (photo) => photo.is_main
               )
+              // Формуємо вік для відображення
+              let age = ''
+              if (animal.age_years && animal.age_months) {
+                age = `${animal.age_years} років, ${animal.age_months} міс.`
+              } else if (animal.age_years) {
+                age = `${animal.age_years} років`
+              } else if (animal.age_months) {
+                age = `${animal.age_months} міс.`
+              }
+              // Формуємо стать для відображення
+              let gender = ''
+              if (
+                animal.gender === true ||
+                animal.gender === 1 ||
+                animal.gender === '1'
+              )
+                gender = 'Хлопчик'
+              else if (
+                animal.gender === false ||
+                animal.gender === 0 ||
+                animal.gender === '0'
+              )
+                gender = 'Дівчинка'
+              else gender = '-'
               return (
-                <tr key={animal.id}>
+                <tr key={animal.animal_id}>
                   <td>{animal.name}</td>
                   <td>{animal.name_en}</td>
                   <td>{animal.type}</td>
                   <td>{animal.type_en}</td>
-                  <td>{animal.gender}</td>
-                  <td>{animal.age}</td>
+                  <td>{gender}</td>
+                  <td>{age}</td>
                   <td>{animal.size}</td>
                   <td>{animal.size_en}</td>
-                  <td>{animal.isSterilizet}</td>
-                  <td className={styles.tdAddInfo}>{animal.additional_information}</td>
-                  <td className={styles.tdAddInfo}>{animal.additional_information_en}</td>
+                  <td>{animal.is_sterilized}</td>
+                  <td className={styles.tdAddInfo}>
+                    {animal.additional_information}
+                  </td>
+                  <td className={styles.tdAddInfo}>
+                    {animal.additional_information_en}
+                  </td>
                   <td>
                     {mainPhoto ? (
                       <img
@@ -217,7 +175,7 @@ const AnimalsTable = ({
                   (photo) => !photo.is_main
                 )
                 return (
-                  <tr key={animal.id + '-extra-photos'}>
+                  <tr key={animal.animal_id + '-extra-photos'}>
                     <td>{animal.name}</td>
                     <td>
                       {extraPhotos.length > 0 ? (

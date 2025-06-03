@@ -18,7 +18,7 @@ const AnimalCard = ({ animal }) => {
         )}
       </div>
       <div className={styles.postInfo}>
-        <div className={styles.postTitle}>{animal.name}</div>
+        <h2 className={styles.postTitle}>{animal.name}</h2>
         <div className={styles.postDesc}>
           <span>{animal.gender}</span>
           <span>{animal.age}</span>

@@ -14,7 +14,7 @@ export default function AddAnimal() {
     name_en: '',
     type: '',
     type_en: '',
-    gender: '',
+    gender: null,
     age_years: '',
     age_months: '',
     size: '',
@@ -164,14 +164,14 @@ export default function AddAnimal() {
           formData.append(key, animal[key])
         }
       })
-      formData.append('gender', animal.gender === '1')
+      formData.append('gender', animal.gender ? '1' : '0')
 
       if (animal.photos.length > 0) {
         animal.photos.forEach((photo, index) => {
           formData.append('photos[]', photo)
           formData.append(
             `photos_data[${index}][is_main]`,
-            animal.photos_data[index].is_main
+            animal.photos_data[index].is_main ? '1' : '0'
           )
         })
       }
@@ -183,7 +183,7 @@ export default function AddAnimal() {
         name_en: '',
         type: '',
         type_en: '',
-        gender: '',
+        gender: null,
         age_years: '',
         age_months: '',
         size: '',
@@ -267,46 +267,32 @@ export default function AddAnimal() {
               <label>Стать/Gender*</label>
               <div className={styles.radioGroup}>
                 <label className={styles.radioLabel}>
-                  {/* <input
-                    type="radio"
-                    name="gender"
-                    value="true"
-                    checked={animal.gender === 'true'}
-                    onChange={(e) =>
-                      setAnimal((prev) => ({ ...prev, gender: e.target.value }))
-                    }
-                    required
-                  /> */}
                   <input
                     type="radio"
                     name="gender"
-                    value="1"
-                    checked={animal.gender === '1'}
+                    value="true"
+                    checked={animal.gender === true}
                     onChange={(e) =>
-                      setAnimal((prev) => ({ ...prev, gender: e.target.value }))
+                      setAnimal((prev) => ({
+                        ...prev,
+                        gender: e.target.value === 'true',
+                      }))
                     }
                     required
                   />
                   Чоловіча
                 </label>
                 <label className={styles.radioLabel}>
-                  {/* <input
-                    type="radio"
-                    name="gender"
-                    value="false"
-                    checked={animal.gender === 'false'}
-                    onChange={(e) =>
-                      setAnimal((prev) => ({ ...prev, gender: e.target.value }))
-                    }
-                    required
-                  /> */}
                   <input
                     type="radio"
                     name="gender"
-                    value="0"
-                    checked={animal.gender === '0'}
+                    value="false"
+                    checked={animal.gender === false}
                     onChange={(e) =>
-                      setAnimal((prev) => ({ ...prev, gender: e.target.value }))
+                      setAnimal((prev) => ({
+                        ...prev,
+                        gender: e.target.value === 'true',
+                      }))
                     }
                     required
                   />
