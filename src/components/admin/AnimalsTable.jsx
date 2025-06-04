@@ -127,7 +127,7 @@ const AnimalsTable = ({ editAnimalRecord, deleteAnimalRecord }) => {
                   <td>
                     {mainPhoto ? (
                       <img
-                        src={mainPhoto.photo_path}
+                        src={`http://127.0.0.1:8000/storage/${mainPhoto.photo_path}`}
                         alt="Головне фото"
                         className={styles.mainPhoto}
                       />
@@ -183,7 +183,7 @@ const AnimalsTable = ({ editAnimalRecord, deleteAnimalRecord }) => {
                           {extraPhotos.map((photo) => (
                             <img
                               key={photo.id}
-                              src={photo.photo_path}
+                              src={`http://127.0.0.1:8000/storage/${photo.photo_path}`}
                               alt="Додаткове фото"
                               className={styles.photo}
                             />
