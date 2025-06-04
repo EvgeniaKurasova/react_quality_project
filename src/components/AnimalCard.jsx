@@ -1,8 +1,29 @@
-import { NavLink } from 'react-router-dom'
 import styles from './AnimalCard.module.css'
 
 const AnimalCard = ({ animal }) => {
   const mainPhoto = animal.photos?.find((photo) => photo.is_main)
+
+  // Формуємо стать
+  let gender = ''
+  if (animal.gender === true || animal.gender === 1 || animal.gender === '1')
+    gender = 'Хлопчик'
+  else if (
+    animal.gender === false ||
+    animal.gender === 0 ||
+    animal.gender === '0'
+  )
+    gender = 'Дівчинка'
+  else gender = '-'
+
+  // Формуємо вік
+  let age = ''
+  if (animal.age_years && animal.age_months) {
+    age = `${animal.age_years} років, ${animal.age_months} міс.`
+  } else if (animal.age_years) {
+    age = `${animal.age_years} років`
+  } else if (animal.age_months) {
+    age = `${animal.age_months} міс.`
+  }
 
   return (
     <div className={styles.postCard}>
@@ -10,7 +31,7 @@ const AnimalCard = ({ animal }) => {
         {mainPhoto ? (
           <img
             className={styles.animalImage}
-            src={mainPhoto.photo_path}
+            src={`http://127.0.0.1:8000/storage/${mainPhoto.photo_path}`}
             alt={animal.name}
           />
         ) : (
@@ -20,12 +41,10 @@ const AnimalCard = ({ animal }) => {
       <div className={styles.postInfo}>
         <h2 className={styles.postTitle}>{animal.name}</h2>
         <div className={styles.postDesc}>
-          <span>{animal.gender}</span>
-          <span>{animal.age}</span>
-        </div>''
-        <NavLink to={`/animal/${animal.id}`}>
-          <button className={styles.postButton}>Переглянути профіль</button>
-        </NavLink>
+          <span>{gender}</span>
+          <span>{age}</span>
+        </div>
+        <button className={styles.postButton}>Переглянути профіль</button>
       </div>
     </div>
   )

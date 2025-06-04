@@ -6,18 +6,26 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/thumbs'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
   HiOutlineArrowSmallRight,
   HiOutlineArrowSmallLeft,
 } from 'react-icons/hi2'
-import { useParams } from 'react-router-dom'
-import { useGetAnimalByIdQuery } from '../redux/animalApi'
+import { useParams, useLocation } from 'react-router-dom'
+import { useGetAnimalsQuery } from '../redux/animalApi'
 
 const AnimalProfile = () => {
-  const { id } = useParams()
-  const { data: animal, isLoading, error } = useGetAnimalByIdQuery(id)
+  const { slug } = useParams()
+  const location = useLocation()
+  const { data, isLoading, error } = useGetAnimalsQuery()
+  const animals = data?.data || []
+
+  // slug = "5-barsik"
+  const id = Number(slug.split('-')[0])
+  const animal = animals.find((a) => a.animal_id === id)
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  const [swiperInstance, setSwiperInstance] = useState(null)
   const prevRef = useRef(null)
   const nextRef = useRef(null)
   const [isFormOpen, setIsFormOpen] = useState(false)
@@ -32,6 +40,16 @@ const AnimalProfile = () => {
     'Надавати притулку фото та відео тварини щомісяця.',
     'Не залишати тварину без нагляду більше 12 годин.',
   ]
+
+  useEffect(() => {
+    if (swiperInstance && prevRef.current && nextRef.current) {
+      swiperInstance.params.navigation.prevEl = prevRef.current
+      swiperInstance.params.navigation.nextEl = nextRef.current
+      swiperInstance.navigation.destroy()
+      swiperInstance.navigation.init()
+      swiperInstance.navigation.update()
+    }
+  }, [swiperInstance])
 
   if (isLoading) {
     return <div className={styles.loading}>Завантаження...</div>
@@ -73,16 +91,7 @@ const AnimalProfile = () => {
                 modules={[Navigation, Pagination, Thumbs]}
                 spaceBetween={0}
                 slidesPerView={1}
-                navigation={{
-                  prevEl: prevRef.current,
-                  nextEl: nextRef.current,
-                }}
-                onInit={(swiper) => {
-                  swiper.params.navigation.prevEl = prevRef.current
-                  swiper.params.navigation.nextEl = nextRef.current
-                  swiper.navigation.init()
-                  swiper.navigation.update()
-                }}
+                onSwiper={setSwiperInstance}
                 pagination={{ clickable: true }}
                 loop={true}
                 thumbs={{ swiper: thumbsSwiper }}
@@ -91,7 +100,7 @@ const AnimalProfile = () => {
                 {animal.photos?.map((photo, index) => (
                   <SwiperSlide key={photo.id} className={styles.swiperSlide}>
                     <img
-                      src={photo.photo_path}
+                      src={`http://127.0.0.1:8000/storage/${photo.photo_path}`}
                       alt={`Фото тварини ${index + 1}`}
                     />
                   </SwiperSlide>
@@ -107,7 +116,7 @@ const AnimalProfile = () => {
                 {animal.photos?.map((photo, index) => (
                   <SwiperSlide key={photo.id} className={styles.thumbSlide}>
                     <img
-                      src={photo.photo_path}
+                      src={`http://127.0.0.1:8000/storage/${photo.photo_path}`}
                       alt={`Мініатюра ${index + 1}`}
                     />
                   </SwiperSlide>
@@ -123,7 +132,7 @@ const AnimalProfile = () => {
           </div>
           <div className={styles.animalInfo}>
             <div className={styles.animalDetails}>
-              <h1 className={styles.animalName}>{animal.name}Ім'я</h1>
+              <h1 className={styles.animalName}>{animal.name}</h1>
               <ul className={styles.detailsList}>
                 {/* переробити вік!!!!!!!!!!!!!!!!!! */}
                 <li>Стать: {animal.gender ? 'Хлопчик' : 'Дівчинка'}</li>

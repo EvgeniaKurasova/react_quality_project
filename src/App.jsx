@@ -20,6 +20,7 @@ function App() {
           <Route path="animal/:id" element={<AnimalProfile />} />
           <Route path="about" element={<About />} />
           <Route path="animal-list" element={<AnimalList />} />
+          <Route path="animals/:slug" element={<AnimalProfile />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
 
