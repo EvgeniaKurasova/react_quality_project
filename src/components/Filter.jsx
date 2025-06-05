@@ -108,7 +108,7 @@ const Filter = () => {
     selectedSize.length === 0
 
   return (
-    <div>
+    <div className={styles.filterContainer}>
       <div className={styles.filterCollapsed}>
         <h2>Знайти друга</h2>
         <div className={styles.filterTitle} onClick={handleToggleFilter}>

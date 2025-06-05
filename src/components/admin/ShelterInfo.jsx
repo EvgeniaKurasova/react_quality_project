@@ -24,10 +24,8 @@ const mockShelterData = {
     'Our shelter helps homeless animals...Our shelter helps homeless animals...Our shelter helps homeless animals...Our shelter helps homeless animals...Our shelter helps homeless animals...',
   logo: 'https://example.com/logo.jpg',
   main_photo: 'https://example.com/main.jpg',
-  adoption_rules:
-    '1. Вік від 18 років\n2. Наявність стабільного доходу\n3. Дозвіл від власників житла',
-  adoption_rules_en:
-    '1. Age 18+\n2. Stable income\n3. Permission from property owners',
+  adoption_rules: ['Вік від 18 років', 'Дозвіл від власників житла'],
+  adoption_rules_en: ['Age 18+', 'Permission from property owners'],
 }
 
 const ShelterInfo = () => {
@@ -127,17 +125,6 @@ const ShelterInfo = () => {
   const hasRules =
     currentShelter?.adoption_rules || currentShelter?.adoption_rules_en
 
-  // Конвертуємо правила з рядка в масив об'єктів
-  const parseRules = (rulesStr) => {
-    if (!rulesStr) return []
-    return rulesStr.split('\n').map((rule, index) => ({
-      uk: rule.trim(),
-      en: currentShelter?.adoption_rules_en?.split('\n')[index]?.trim() || '',
-    }))
-  }
-
-  const rules = parseRules(currentShelter?.adoption_rules)
-
   const renderInfoRow = (label, value, fieldName, isImage = false) => (
     <div className={styles.infoRow} key={fieldName}>
       <div className={styles.infoLabel}>{label}</div>
@@ -223,7 +210,7 @@ const ShelterInfo = () => {
       {/* Таблиця для правил усиновлення */}
       <div>
         <div className={styles.rulesHeaderRow}>
-          <h3 className={styles.adoptionRulesTitle}>Правила усиновлення</h3>
+          <h3 className={styles.adoptionRulesTitle}>Правила адопції</h3>
           {hasRules && !isEditingRules && (
             <button
               className={styles.addEditRulesButton}
@@ -236,7 +223,10 @@ const ShelterInfo = () => {
         <div className={styles.tableContainer}>
           {isEditingRules ? (
             <RulesAddEdit
-              rules={rules}
+              rules={currentShelter.adoption_rules.map((rule, idx) => ({
+                uk: rule,
+                en: currentShelter.adoption_rules_en[idx] || '',
+              }))}
               onSave={handleSaveRules}
               onCancel={handleCancelRules}
             />
@@ -244,21 +234,17 @@ const ShelterInfo = () => {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th>Правила усиновлення</th>
+                  <th>Правила адопції</th>
                   <th>Adoption Rules</th>
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  key={
-                    currentShelter.id
-                      ? currentShelter.id + '-adoption-rules'
-                      : 'empty-adoption-rules'
-                  }
-                >
-                  <td>{currentShelter.adoption_rules || ''}</td>
-                  <td>{currentShelter.adoption_rules_en || ''}</td>
-                </tr>
+                {currentShelter.adoption_rules.map((rule, idx) => (
+                  <tr key={idx}>
+                    <td>{rule}</td>
+                    <td>{currentShelter.adoption_rules_en[idx]}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           ) : (

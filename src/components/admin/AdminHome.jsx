@@ -31,11 +31,11 @@ const AdminHome = () => {
       <div className={styles.nav}>
         <button onClick={() => navigate('animals')}>Тварини</button>
         <button onClick={() => navigate('adoption-requests')}>
-          Запити на усиновлення
+          Запити на адопцію
         </button>
-        <button onClick={() => navigate('users')}>
+        {/* <button onClick={() => navigate('users')}>
           Зареєстровані користувачі
-        </button>
+        </button> */}
         <button onClick={() => navigate('shelter-info')}>
           Інформація про притулок
         </button>

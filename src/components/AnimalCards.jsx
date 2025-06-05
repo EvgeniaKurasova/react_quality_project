@@ -5,7 +5,6 @@ import {
 import { useSelector } from 'react-redux'
 import styles from './AnimalCards.module.css'
 import AnimalCard from './AnimalCard'
-import { Link } from 'react-router-dom'
 
 const AnimalCards = () => {
   const { isFilterApplied, filters } = useSelector((state) => state.filter)
@@ -64,15 +63,7 @@ const AnimalCards = () => {
     <div className={styles.postsGrid}>
       {/* <div className={styles.animalCardsContainer}></div> */}
       {animals.map((animal) => (
-        <Link
-          key={animal.animal_id}
-          to={`/animals/${animal.animal_id}-${encodeURIComponent(
-            animal.name_en
-          )}`}
-          state={{ id: animal.animal_id }}
-        >
-          <AnimalCard animal={animal} />
-        </Link>
+        <AnimalCard key={animal.animal_id} animal={animal} />
       ))}
     </div>
   )

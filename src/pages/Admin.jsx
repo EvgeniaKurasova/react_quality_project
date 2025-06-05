@@ -61,7 +61,7 @@ const Admin = () => {
                 <Link to="/admin" className="back-button">
                   ← Назад
                 </Link>
-                <h1>Запити на усиновлення</h1>
+                <h1>Запити на адопцію</h1>
               </div>
               <AdoptionRequestsTable />
             </div>

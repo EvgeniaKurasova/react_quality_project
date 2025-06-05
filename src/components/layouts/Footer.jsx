@@ -80,7 +80,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
       <div className={styles.footerBottom}>
         <p>
           &copy; {new Date().getFullYear()} Animal Shelter. Всі права захищені.

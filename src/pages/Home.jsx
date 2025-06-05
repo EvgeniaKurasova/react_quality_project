@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { useGetAnimalsQuery } from '../redux/animalApi'
 import AnimalCards from '../components/AnimalCards'
 import { useEffect } from 'react'
+import image_url from '../assets/anoir-chafik.jpg'
 
 const posts = [
   {
@@ -52,7 +53,6 @@ const posts = [
 
 const Home = () => {
   const location = useLocation()
-
   useEffect(() => {
     if (location.state?.scrollToAnimalCards) {
       const animalCardsSection = document.getElementById('animal-cards')
@@ -66,9 +66,26 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.mainPart}>
-        <h1>EDWAKPRESETS // STORE</h1>
-        <div className={styles.subtitle}>High Quality Lightroom Presets</div>
+      {console.log(image_url)}
+      <div className={styles.mainPart}
+       style={{
+        backgroundImage: `url(${image_url})`,
+        backgroundSize: 'cover',
+        backgroundPosition: '50% 80%',
+        width: "100%",
+        height: "100vh",
+        objectFit: 'cover',
+        objectContain: 'cover'
+      }}>
+        <h1 className={styles.title}>Animal Shelter</h1>
+        {/* EDWAKPRESETS // STORE */}
+        {/* High Quality Lightroom Presets */}
+        <div className={styles.subtitle}>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
+          voluptatibus optio soluta, itaque iste ut porro. Excepturi, nesciunt
+          ipsum! Incidunt voluptatum veniam ratione iure expedita quam,
+          inventore officia eum illum!
+        </div>
       </div>
       <div>
         <Filter />

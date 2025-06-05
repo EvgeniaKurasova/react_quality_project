@@ -340,25 +340,6 @@ const ShelterInfoEditor = ({ shelter, onSave, onCancel }) => {
           required
         />
       </div>
-
-      <div className={styles.formGroup}>
-        <label>Правила усиновлення</label>
-        <textarea
-          name="adoption_rules"
-          value={formData.adoption_rules}
-          onChange={handleInputChange}
-        />
-      </div>
-
-      <div className={styles.formGroup}>
-        <label>Правила усиновлення (англійською)</label>
-        <textarea
-          name="adoption_rules_en"
-          value={formData.adoption_rules_en}
-          onChange={handleInputChange}
-        />
-      </div>
-
       {errors.submit && <div className={styles.error}>{errors.submit}</div>}
 
       <div className={styles.buttonGroup}>

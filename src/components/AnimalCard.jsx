@@ -1,4 +1,5 @@
 import styles from './AnimalCard.module.css'
+import { Link } from 'react-router-dom'
 
 const AnimalCard = ({ animal }) => {
   const mainPhoto = animal.photos?.find((photo) => photo.is_main)
@@ -44,7 +45,14 @@ const AnimalCard = ({ animal }) => {
           <span>{gender}</span>
           <span>{age}</span>
         </div>
-        <button className={styles.postButton}>Переглянути профіль</button>
+        <Link
+          to={`/animals/${animal.animal_id}-${encodeURIComponent(
+            animal.name_en
+          )}`}
+          state={{ id: animal.animal_id }}
+        >
+          <button className={styles.postButton}>Переглянути профіль</button>
+        </Link>
       </div>
     </div>
   )

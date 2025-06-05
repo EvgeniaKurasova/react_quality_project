@@ -4,3 +4,50 @@
   padding: 60px 40px 90px 40px;
   background: #fff;
 }
+.aboutMainContent{
+  /* display: flex;
+  flex-direction: row; */
+  background-color: #095145;
+  height: 100%;
+  border-radius: 4px;
+}
+.imgAboutPage{
+  width: auto;
+  height: 460px;
+  float: left;
+  /* object-fit: cover;  */
+  margin: 0px 24px 14px 0px;
+  border-radius: 4px;
+}
+.textAboutPage{
+  color: #fff;
+  padding: 24px;
+  min-height: 460px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 1.6;
+}
+.titleAboutPage{
+  color: #fff;
+  margin-bottom: 32px;
+}
+.aboutSubContent{
+  margin: 100px 0px 40px 0px;
+  width: 100%;
+height: 300px;
+border-top: 2px solid #888;
+border-bottom: 2px solid #888;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 18px;
+}
+.aboutSubText{
+  /* color: aliceblue; */
+  color: #095145;
+  opacity: 0.9;
+}
+.aboutCardNumber{
+  color: #095145;
+  opacity: 0.9;
+}
