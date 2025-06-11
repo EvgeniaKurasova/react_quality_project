@@ -98,7 +98,10 @@ const AnimalProfile = () => {
                 className={styles.swiper}
               >
                 {animal.photos?.map((photo, index) => (
-                  <SwiperSlide key={photo.id} className={styles.swiperSlide}>
+                  <SwiperSlide
+                    key={photo.photo_id}
+                    className={styles.swiperSlide}
+                  >
                     <img
                       src={`http://127.0.0.1:8000/storage/${photo.photo_path}`}
                       alt={`Фото тварини ${index + 1}`}
@@ -114,7 +117,10 @@ const AnimalProfile = () => {
                 className={styles.thumbsSwiper}
               >
                 {animal.photos?.map((photo, index) => (
-                  <SwiperSlide key={photo.id} className={styles.thumbSlide}>
+                  <SwiperSlide
+                    key={photo.photo_id}
+                    className={styles.thumbSlide}
+                  >
                     <img
                       src={`http://127.0.0.1:8000/storage/${photo.photo_path}`}
                       alt={`Мініатюра ${index + 1}`}
@@ -171,7 +177,7 @@ const AnimalProfile = () => {
         >
           <div className={styles.adoptionSection}>
             {/* id або animal_id!!!!!!!!!!!!!!!! */}
-            <AdoptionRequest animal_id={animal.id} animal_name={animal.name} />
+            <AdoptionRequest animal_id={animal.animal_id} animal_name={animal.name} />
           </div>
         </div>
         <div className={styles.adoptionRules}>
@@ -179,7 +185,7 @@ const AnimalProfile = () => {
           <ul className={styles.rulesList}>
             {rules.map((rule, idx) => (
               <li
-                key={idx}
+                key={rule + idx}
                 className={idx % 2 === 0 ? styles.ruleEven : styles.ruleOdd}
               >
                 {rule}

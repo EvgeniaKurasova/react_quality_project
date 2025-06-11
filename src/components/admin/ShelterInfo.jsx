@@ -240,7 +240,7 @@ const ShelterInfo = () => {
               </thead>
               <tbody>
                 {currentShelter.adoption_rules.map((rule, idx) => (
-                  <tr key={idx}>
+                  <tr key={rule + idx}>
                     <td>{rule}</td>
                     <td>{currentShelter.adoption_rules_en[idx]}</td>
                   </tr>

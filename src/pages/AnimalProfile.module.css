@@ -281,7 +281,7 @@
 .adoptionRequest.visible {
   /* display: block;
   visibility: visible; */
-  max-height: 800px;
+  max-height: 1400px;
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
